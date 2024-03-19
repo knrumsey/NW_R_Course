@@ -11,7 +11,7 @@
   <meta name="generator" content="quarto-1.3.450">
 
   <meta name="author" content="Kellin Rumsey">
-  <title>Introduction to R</title>
+  <title>Getting Started with Data Analysis in R</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -390,7 +390,7 @@
     <div class="slides">
 
 <section id="title-slide" class="quarto-title-block center">
-  <h1 class="title">Introduction to R</h1>
+  <h1 class="title">Getting Started with Data Analysis in R</h1>
 
 <div class="quarto-title-authors">
 <div class="quarto-title-author">
@@ -403,8 +403,12 @@ Kellin Rumsey
 </section>
 <section id="introduction" class="slide level2">
 <h2>Introduction</h2>
-<p>Hi I’m Kellin.</p>
 <p>You can find these slides at <code>https://github.com/knrumsey/NW_R_Course</code></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>Open the file <code>Intro2R.html</code>.</p>
+<p>&nbsp;</p>
+<p>Right click and select <em>Open in New Tab</em>.</p>
 </section>
 <section id="goals-for-the-next-hour" class="slide level2">
 <h2>Goals for the Next Hour</h2>
@@ -447,7 +451,7 @@ Kellin Rumsey
 <h2>RStudio Panes</h2>
 
 <img data-src="figs/rstudio-panes-labeled.jpeg" class="r-stretch"></section>
-<section id="r-packages" class="slide level2">
+<section id="r-packages" class="slide level2 smaller">
 <h2>R packages</h2>
 <p>R has a lot of useful functions that are shipped with the <em>base</em> version. But sometimes we need functionality not included by <em>base R</em>.</p>
 <p>An <strong>R package</strong> is a bundle of R code that the author has made readily available to us.</p>
@@ -481,10 +485,7 @@ Kellin Rumsey
 <span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>data <span class="ot">=</span> <span class="fu">read_csv</span>(<span class="st">"mydata.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="section" class="slide level2">
-<h2></h2>
-</section>
-<section id="r-resources" class="slide level2">
+<section id="r-resources" class="slide level2 smaller">
 <h2>R Resources</h2>
 <p>For learning R on your own.</p>
 <ul>
@@ -760,8 +761,8 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 <span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(imp<span class="sc">/</span><span class="fu">sum</span>(imp)<span class="sc">*</span><span class="dv">100</span>, <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>          IncNodePurity
-Age                20.7
-Treatment          79.3</code></pre>
+Age               21.13
+Treatment         78.87</code></pre>
 </div>
 </div>
 </section>
@@ -842,7 +843,7 @@ Treatment          79.3</code></pre>
 <h2>Rules for Variable Names</h2>
 <ul>
 <li><p>Must begin with a letter</p></li>
-<li><p>Can contain letters, numbers, and the symbol <code>_</code> (also <code>., but avoid this).</code></p></li>
+<li><p>Can contain letters, numbers, and the symbol <code>_</code> (also <code>.</code>)</p></li>
 <li><p>Variable names cannot include spaces or special characters.</p></li>
 <li><p>Case sensitive.</p></li>
 <li><p>Cannot be a <em>special keyword</em> in R (like <code>if</code>, <code>while</code>, <code>function</code>, etc)</p></li>
@@ -884,131 +885,160 @@ Treatment          79.3</code></pre>
 </section>
 <section id="data-types-in-r-2" class="slide level2">
 <h2>Data Types in R</h2>
-<h4 id="character-data">Character Data</h4>
-<p>Strings of alpha numeric characters in between quotation marks.</p>
+<h4 id="logical-data-1">Logical Data</h4>
+<p>Here are some useful logic operations we can perform.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>aaa <span class="ot">=</span> <span class="st">"apple"</span></span>
-<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a>bbb <span class="ot">=</span> <span class="st">"banana"</span></span>
-<span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(aaa)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] "character"</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Special functions for treating these</span></span>
-<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a><span class="fu">nchar</span>(aaa) <span class="co"># how many characters?</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 5</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="fu">substr</span>(aaa, <span class="dv">2</span>, <span class="dv">3</span>) <span class="co"># give me the second and third characters</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] "pp"</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a>aaa <span class="sc">==</span> bbb <span class="co"># are aaa and bbb the same? (FALSE)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>A <span class="ot">=</span> <span class="cn">TRUE</span></span>
+<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a>B <span class="ot">=</span> <span class="cn">FALSE</span></span>
+<span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-4"><a href="#cb48-4" aria-hidden="true" tabindex="-1"></a><span class="co"># The "and" operator</span></span>
+<span id="cb48-5"><a href="#cb48-5" aria-hidden="true" tabindex="-1"></a>A <span class="sc">&amp;</span> B</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] FALSE</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="co"># The "or" operator</span></span>
+<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a>A <span class="sc">|</span> B</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] TRUE</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="co"># The "not" operator</span></span>
+<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a><span class="sc">!</span>A</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] FALSE</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="sc">!</span>(A <span class="sc">&amp;</span> B)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] TRUE</code></pre>
 </div>
 </div>
 </section>
 <section id="data-types-in-r-3" class="slide level2">
 <h2>Data Types in R</h2>
+<h4 id="character-data">Character Data</h4>
+<p>Strings of alpha numeric characters in between quotation marks.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a>aaa <span class="ot">=</span> <span class="st">"apple"</span></span>
+<span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a>bbb <span class="ot">=</span> <span class="st">"banana"</span></span>
+<span id="cb56-3"><a href="#cb56-3" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(aaa)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "character"</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Special functions for treating these</span></span>
+<span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a><span class="fu">nchar</span>(aaa) <span class="co"># how many characters?</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 5</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="fu">substr</span>(aaa, <span class="dv">2</span>, <span class="dv">3</span>) <span class="co"># give me the second and third characters</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "pp"</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb62"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a>aaa <span class="sc">==</span> bbb <span class="co"># are aaa and bbb the same? (FALSE)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] FALSE</code></pre>
+</div>
+</div>
+</section>
+<section id="data-types-in-r-4" class="slide level2">
+<h2>Data Types in R</h2>
 <h4 id="objects">Objects</h4>
 <p>A variable can also contain a more sophisticated <em>object</em>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Simulate some data</span></span>
-<span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a>n <span class="ot">=</span> <span class="dv">10</span></span>
-<span id="cb56-3"><a href="#cb56-3" aria-hidden="true" tabindex="-1"></a>xx <span class="ot">=</span> <span class="fu">runif</span>(n, <span class="at">min=</span><span class="dv">0</span>, <span class="at">max=</span><span class="dv">1</span>)</span>
-<span id="cb56-4"><a href="#cb56-4" aria-hidden="true" tabindex="-1"></a>yy <span class="ot">=</span> <span class="dv">1</span> <span class="sc">+</span> <span class="dv">2</span><span class="sc">*</span>xx <span class="sc">+</span> <span class="fu">rnorm</span>(n, <span class="at">mean=</span><span class="dv">0</span>, <span class="at">sd=</span><span class="fl">0.25</span>)</span>
-<span id="cb56-5"><a href="#cb56-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-6"><a href="#cb56-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit a linear model and save it to a variable</span></span>
-<span id="cb56-7"><a href="#cb56-7" aria-hidden="true" tabindex="-1"></a>foo <span class="ot">=</span> <span class="fu">lm</span>(yy<span class="sc">~</span>xx)</span>
-<span id="cb56-8"><a href="#cb56-8" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(foo)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb64"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Simulate some data</span></span>
+<span id="cb64-2"><a href="#cb64-2" aria-hidden="true" tabindex="-1"></a>n <span class="ot">=</span> <span class="dv">10</span></span>
+<span id="cb64-3"><a href="#cb64-3" aria-hidden="true" tabindex="-1"></a>xx <span class="ot">=</span> <span class="fu">runif</span>(n, <span class="at">min=</span><span class="dv">0</span>, <span class="at">max=</span><span class="dv">1</span>)</span>
+<span id="cb64-4"><a href="#cb64-4" aria-hidden="true" tabindex="-1"></a>yy <span class="ot">=</span> <span class="dv">1</span> <span class="sc">+</span> <span class="dv">2</span><span class="sc">*</span>xx <span class="sc">+</span> <span class="fu">rnorm</span>(n, <span class="at">mean=</span><span class="dv">0</span>, <span class="at">sd=</span><span class="fl">0.25</span>)</span>
+<span id="cb64-5"><a href="#cb64-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-6"><a href="#cb64-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit a linear model and save it to a variable</span></span>
+<span id="cb64-7"><a href="#cb64-7" aria-hidden="true" tabindex="-1"></a>foo <span class="ot">=</span> <span class="fu">lm</span>(yy<span class="sc">~</span>xx)</span>
+<span id="cb64-8"><a href="#cb64-8" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(foo)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "lm"</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Make a plot</span></span>
-<span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(xx, yy)</span>
-<span id="cb58-3"><a href="#cb58-3" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(foo)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb66"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Make a plot</span></span>
+<span id="cb66-2"><a href="#cb66-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(xx, yy)</span>
+<span id="cb66-3"><a href="#cb66-3" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(foo)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
-<img data-src="Intro2R_files/figure-revealjs/unnamed-chunk-28-1.png" width="960" class="r-stretch"></section>
+<img data-src="Intro2R_files/figure-revealjs/unnamed-chunk-29-1.png" width="960" class="r-stretch"></section>
 <section id="vectors-in-r" class="slide level2">
 <h2>Vectors in R</h2>
 <p>A vector is a ordered collection of variables of the same type.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb59" data-code-line-numbers="1-3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb59-1"><a href="#cb59-1"></a><span class="co"># Define a vector</span></span>
-<span id="cb59-2"><a href="#cb59-2"></a>foo <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">7</span>, <span class="dv">11</span>)</span>
-<span id="cb59-3"><a href="#cb59-3"></a>foo</span>
-<span id="cb59-4"><a href="#cb59-4"></a></span>
-<span id="cb59-5"><a href="#cb59-5"></a><span class="co"># Functions on a vector</span></span>
-<span id="cb59-6"><a href="#cb59-6"></a><span class="fu">length</span>(foo) <span class="co"># how many elements in the vector?</span></span>
-<span id="cb59-7"><a href="#cb59-7"></a><span class="fu">sum</span>(foo)    <span class="co"># add the elements together</span></span>
-<span id="cb59-8"><a href="#cb59-8"></a><span class="fu">var</span>(foo)    <span class="co"># calculate the variance</span></span>
-<span id="cb59-9"><a href="#cb59-9"></a></span>
-<span id="cb59-10"><a href="#cb59-10"></a><span class="co"># Extract values from a vector</span></span>
-<span id="cb59-11"><a href="#cb59-11"></a>foo[<span class="dv">1</span>]         <span class="co"># Get the first value from foo</span></span>
-<span id="cb59-12"><a href="#cb59-12"></a>foo[<span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">4</span>,<span class="dv">6</span>)]  <span class="co"># Get the 2nd, 4th, and 6th value </span></span>
-<span id="cb59-13"><a href="#cb59-13"></a>foo[<span class="sc">-</span><span class="dv">2</span>]        <span class="co"># Get all values EXCEPT the 2nd</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb67" data-code-line-numbers="1-3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb67-1"><a href="#cb67-1"></a><span class="co"># Define a vector</span></span>
+<span id="cb67-2"><a href="#cb67-2"></a>foo <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">7</span>, <span class="dv">11</span>)</span>
+<span id="cb67-3"><a href="#cb67-3"></a>foo</span>
+<span id="cb67-4"><a href="#cb67-4"></a></span>
+<span id="cb67-5"><a href="#cb67-5"></a><span class="co"># Functions on a vector</span></span>
+<span id="cb67-6"><a href="#cb67-6"></a><span class="fu">length</span>(foo) <span class="co"># how many elements in the vector?</span></span>
+<span id="cb67-7"><a href="#cb67-7"></a><span class="fu">sum</span>(foo)    <span class="co"># add the elements together</span></span>
+<span id="cb67-8"><a href="#cb67-8"></a><span class="fu">var</span>(foo)    <span class="co"># calculate the variance</span></span>
+<span id="cb67-9"><a href="#cb67-9"></a></span>
+<span id="cb67-10"><a href="#cb67-10"></a><span class="co"># Extract values from a vector</span></span>
+<span id="cb67-11"><a href="#cb67-11"></a>foo[<span class="dv">1</span>]         <span class="co"># Get the first value from foo</span></span>
+<span id="cb67-12"><a href="#cb67-12"></a>foo[<span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">4</span>,<span class="dv">6</span>)]  <span class="co"># Get the 2nd, 4th, and 6th value </span></span>
+<span id="cb67-13"><a href="#cb67-13"></a>foo[<span class="sc">-</span><span class="dv">2</span>]        <span class="co"># Get all values EXCEPT the 2nd</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="vectors-in-r-1" class="slide level2">
 <h2>Vectors in R</h2>
 <p>A vector is a ordered collection of variables.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb60" data-code-line-numbers="5-9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1"></a><span class="co"># Define a vector</span></span>
-<span id="cb60-2"><a href="#cb60-2"></a>foo <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">7</span>, <span class="dv">11</span>)</span>
-<span id="cb60-3"><a href="#cb60-3"></a>foo</span>
-<span id="cb60-4"><a href="#cb60-4"></a></span>
-<span id="cb60-5"><a href="#cb60-5"></a><span class="co"># Functions on a vector</span></span>
-<span id="cb60-6"><a href="#cb60-6"></a><span class="fu">length</span>(foo) <span class="co"># how many elements in the vector?</span></span>
-<span id="cb60-7"><a href="#cb60-7"></a><span class="fu">sum</span>(foo)    <span class="co"># add the elements together</span></span>
-<span id="cb60-8"><a href="#cb60-8"></a><span class="fu">var</span>(foo)    <span class="co"># calculate the variance</span></span>
-<span id="cb60-9"><a href="#cb60-9"></a></span>
-<span id="cb60-10"><a href="#cb60-10"></a><span class="co"># Extract values from a vector</span></span>
-<span id="cb60-11"><a href="#cb60-11"></a>foo[<span class="dv">1</span>]         <span class="co"># Get the first value from foo</span></span>
-<span id="cb60-12"><a href="#cb60-12"></a>foo[<span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">4</span>,<span class="dv">6</span>)]  <span class="co"># Get the 2nd, 4th, and 6th value </span></span>
-<span id="cb60-13"><a href="#cb60-13"></a>foo[<span class="sc">-</span><span class="dv">2</span>]        <span class="co"># Get all values EXCEPT the 2nd</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb68" data-code-line-numbers="5-9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb68-1"><a href="#cb68-1"></a><span class="co"># Define a vector</span></span>
+<span id="cb68-2"><a href="#cb68-2"></a>foo <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">7</span>, <span class="dv">11</span>)</span>
+<span id="cb68-3"><a href="#cb68-3"></a>foo</span>
+<span id="cb68-4"><a href="#cb68-4"></a></span>
+<span id="cb68-5"><a href="#cb68-5"></a><span class="co"># Functions on a vector</span></span>
+<span id="cb68-6"><a href="#cb68-6"></a><span class="fu">length</span>(foo) <span class="co"># how many elements in the vector?</span></span>
+<span id="cb68-7"><a href="#cb68-7"></a><span class="fu">sum</span>(foo)    <span class="co"># add the elements together</span></span>
+<span id="cb68-8"><a href="#cb68-8"></a><span class="fu">var</span>(foo)    <span class="co"># calculate the variance</span></span>
+<span id="cb68-9"><a href="#cb68-9"></a></span>
+<span id="cb68-10"><a href="#cb68-10"></a><span class="co"># Extract values from a vector</span></span>
+<span id="cb68-11"><a href="#cb68-11"></a>foo[<span class="dv">1</span>]         <span class="co"># Get the first value from foo</span></span>
+<span id="cb68-12"><a href="#cb68-12"></a>foo[<span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">4</span>,<span class="dv">6</span>)]  <span class="co"># Get the 2nd, 4th, and 6th value </span></span>
+<span id="cb68-13"><a href="#cb68-13"></a>foo[<span class="sc">-</span><span class="dv">2</span>]        <span class="co"># Get all values EXCEPT the 2nd</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="vectors-in-r-2" class="slide level2">
 <h2>Vectors in R</h2>
 <p>A vector is a ordered collection of variables.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb61" data-code-line-numbers="10-13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb61-1"><a href="#cb61-1"></a><span class="co"># Define some vectors</span></span>
-<span id="cb61-2"><a href="#cb61-2"></a>foo <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">7</span>, <span class="dv">11</span>)</span>
-<span id="cb61-3"><a href="#cb61-3"></a>foo</span>
-<span id="cb61-4"><a href="#cb61-4"></a></span>
-<span id="cb61-5"><a href="#cb61-5"></a><span class="co"># Functions on a vector</span></span>
-<span id="cb61-6"><a href="#cb61-6"></a><span class="fu">length</span>(foo) <span class="co"># how many elements in the vector?</span></span>
-<span id="cb61-7"><a href="#cb61-7"></a><span class="fu">sum</span>(foo)    <span class="co"># add the elements together</span></span>
-<span id="cb61-8"><a href="#cb61-8"></a><span class="fu">var</span>(foo)    <span class="co"># calculate the variance</span></span>
-<span id="cb61-9"><a href="#cb61-9"></a></span>
-<span id="cb61-10"><a href="#cb61-10"></a></span>
-<span id="cb61-11"><a href="#cb61-11"></a><span class="co"># Extract values from a vector</span></span>
-<span id="cb61-12"><a href="#cb61-12"></a>foo[<span class="dv">1</span>]         <span class="co"># Get the first value from foo</span></span>
-<span id="cb61-13"><a href="#cb61-13"></a>foo[<span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">4</span>,<span class="dv">6</span>)]  <span class="co"># Get the 2nd, 4th, and 6th value </span></span>
-<span id="cb61-14"><a href="#cb61-14"></a>foo[<span class="sc">-</span><span class="dv">2</span>]        <span class="co"># Get all values EXCEPT the 2nd</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb69" data-code-line-numbers="11-14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb69-1"><a href="#cb69-1"></a><span class="co"># Define some vectors</span></span>
+<span id="cb69-2"><a href="#cb69-2"></a>foo <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">7</span>, <span class="dv">11</span>)</span>
+<span id="cb69-3"><a href="#cb69-3"></a>foo</span>
+<span id="cb69-4"><a href="#cb69-4"></a></span>
+<span id="cb69-5"><a href="#cb69-5"></a><span class="co"># Functions on a vector</span></span>
+<span id="cb69-6"><a href="#cb69-6"></a><span class="fu">length</span>(foo) <span class="co"># how many elements in the vector?</span></span>
+<span id="cb69-7"><a href="#cb69-7"></a><span class="fu">sum</span>(foo)    <span class="co"># add the elements together</span></span>
+<span id="cb69-8"><a href="#cb69-8"></a><span class="fu">var</span>(foo)    <span class="co"># calculate the variance</span></span>
+<span id="cb69-9"><a href="#cb69-9"></a></span>
+<span id="cb69-10"><a href="#cb69-10"></a></span>
+<span id="cb69-11"><a href="#cb69-11"></a><span class="co"># Extract values from a vector</span></span>
+<span id="cb69-12"><a href="#cb69-12"></a>foo[<span class="dv">1</span>]         <span class="co"># Get the first value from foo</span></span>
+<span id="cb69-13"><a href="#cb69-13"></a>foo[<span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">4</span>,<span class="dv">6</span>)]  <span class="co"># Get the 2nd, 4th, and 6th value </span></span>
+<span id="cb69-14"><a href="#cb69-14"></a>foo[<span class="sc">-</span><span class="dv">2</span>]        <span class="co"># Get all values EXCEPT the 2nd</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="vectors-in-r-3" class="slide level2">
 <h2>Vectors in R</h2>
 <p>There are lots of ways to create vectors.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb62"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Numbers between 3 and 10</span></span>
-<span id="cb62-2"><a href="#cb62-2" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span><span class="sc">:</span><span class="dv">10</span></span>
-<span id="cb62-3"><a href="#cb62-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb62-4"><a href="#cb62-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Even numbers between 4 and 88</span></span>
-<span id="cb62-5"><a href="#cb62-5" aria-hidden="true" tabindex="-1"></a><span class="fu">seq</span>(<span class="dv">4</span>, <span class="dv">88</span>, <span class="at">by=</span><span class="dv">2</span>)</span>
-<span id="cb62-6"><a href="#cb62-6" aria-hidden="true" tabindex="-1"></a>(<span class="dv">2</span><span class="sc">:</span><span class="dv">44</span>) <span class="sc">*</span> <span class="dv">2</span> <span class="co"># this is another way</span></span>
-<span id="cb62-7"><a href="#cb62-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb62-8"><a href="#cb62-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Repeat 3 seven times</span></span>
-<span id="cb62-9"><a href="#cb62-9" aria-hidden="true" tabindex="-1"></a><span class="fu">rep</span>(<span class="dv">3</span>, <span class="dv">7</span>)</span>
-<span id="cb62-10"><a href="#cb62-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb62-11"><a href="#cb62-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Concatenate vectors with c()</span></span>
-<span id="cb62-12"><a href="#cb62-12" aria-hidden="true" tabindex="-1"></a>a <span class="ot">=</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span></span>
-<span id="cb62-13"><a href="#cb62-13" aria-hidden="true" tabindex="-1"></a>b <span class="ot">=</span> <span class="dv">11</span><span class="sc">:</span><span class="dv">15</span></span>
-<span id="cb62-14"><a href="#cb62-14" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(a, b)</span>
-<span id="cb62-15"><a href="#cb62-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb62-16"><a href="#cb62-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Get random numbers from a normal distribution</span></span>
-<span id="cb62-17"><a href="#cb62-17" aria-hidden="true" tabindex="-1"></a><span class="fu">rnorm</span>(<span class="dv">30</span>, <span class="at">mean=</span><span class="dv">10</span>, <span class="at">sd=</span><span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb70"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb70-1"><a href="#cb70-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Numbers between 3 and 10</span></span>
+<span id="cb70-2"><a href="#cb70-2" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span><span class="sc">:</span><span class="dv">10</span></span>
+<span id="cb70-3"><a href="#cb70-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb70-4"><a href="#cb70-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Even numbers between 4 and 88</span></span>
+<span id="cb70-5"><a href="#cb70-5" aria-hidden="true" tabindex="-1"></a><span class="fu">seq</span>(<span class="dv">4</span>, <span class="dv">88</span>, <span class="at">by=</span><span class="dv">2</span>)</span>
+<span id="cb70-6"><a href="#cb70-6" aria-hidden="true" tabindex="-1"></a>(<span class="dv">2</span><span class="sc">:</span><span class="dv">44</span>) <span class="sc">*</span> <span class="dv">2</span> <span class="co"># this is another way</span></span>
+<span id="cb70-7"><a href="#cb70-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb70-8"><a href="#cb70-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Repeat 3 seven times</span></span>
+<span id="cb70-9"><a href="#cb70-9" aria-hidden="true" tabindex="-1"></a><span class="fu">rep</span>(<span class="dv">3</span>, <span class="dv">7</span>)</span>
+<span id="cb70-10"><a href="#cb70-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb70-11"><a href="#cb70-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Concatenate vectors with c()</span></span>
+<span id="cb70-12"><a href="#cb70-12" aria-hidden="true" tabindex="-1"></a>a <span class="ot">=</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span></span>
+<span id="cb70-13"><a href="#cb70-13" aria-hidden="true" tabindex="-1"></a>b <span class="ot">=</span> <span class="dv">11</span><span class="sc">:</span><span class="dv">15</span></span>
+<span id="cb70-14"><a href="#cb70-14" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(a, b)</span>
+<span id="cb70-15"><a href="#cb70-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb70-16"><a href="#cb70-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Get random numbers from a normal distribution</span></span>
+<span id="cb70-17"><a href="#cb70-17" aria-hidden="true" tabindex="-1"></a><span class="fu">rnorm</span>(<span class="dv">30</span>, <span class="at">mean=</span><span class="dv">10</span>, <span class="at">sd=</span><span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="r-script" class="slide level2">
@@ -1028,19 +1058,19 @@ Treatment          79.3</code></pre>
 <li>Type the following into the R script</li>
 </ol>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb63"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">=</span> <span class="dv">102</span></span>
-<span id="cb63-2"><a href="#cb63-2" aria-hidden="true" tabindex="-1"></a>y <span class="ot">=</span> <span class="dv">48</span></span>
-<span id="cb63-3"><a href="#cb63-3" aria-hidden="true" tabindex="-1"></a>z <span class="ot">=</span> x <span class="sc">+</span> <span class="dv">2</span><span class="sc">*</span>y</span>
-<span id="cb63-4"><a href="#cb63-4" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(z)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb71"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb71-1"><a href="#cb71-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">=</span> <span class="dv">102</span></span>
+<span id="cb71-2"><a href="#cb71-2" aria-hidden="true" tabindex="-1"></a>y <span class="ot">=</span> <span class="dv">48</span></span>
+<span id="cb71-3"><a href="#cb71-3" aria-hidden="true" tabindex="-1"></a>z <span class="ot">=</span> x <span class="sc">+</span> <span class="dv">2</span><span class="sc">*</span>y</span>
+<span id="cb71-4"><a href="#cb71-4" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(z)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="r-script-2" class="slide level2">
 <h2>R Script</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb64"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">=</span> <span class="dv">102</span></span>
-<span id="cb64-2"><a href="#cb64-2" aria-hidden="true" tabindex="-1"></a>y <span class="ot">=</span> <span class="dv">48</span></span>
-<span id="cb64-3"><a href="#cb64-3" aria-hidden="true" tabindex="-1"></a>z <span class="ot">=</span> x <span class="sc">+</span> <span class="dv">2</span><span class="sc">*</span>y</span>
-<span id="cb64-4"><a href="#cb64-4" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(z)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb72"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb72-1"><a href="#cb72-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">=</span> <span class="dv">102</span></span>
+<span id="cb72-2"><a href="#cb72-2" aria-hidden="true" tabindex="-1"></a>y <span class="ot">=</span> <span class="dv">48</span></span>
+<span id="cb72-3"><a href="#cb72-3" aria-hidden="true" tabindex="-1"></a>z <span class="ot">=</span> x <span class="sc">+</span> <span class="dv">2</span><span class="sc">*</span>y</span>
+<span id="cb72-4"><a href="#cb72-4" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(z)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ol start="4" type="1">
 <li>To execute the code you can
@@ -1051,7 +1081,7 @@ Treatment          79.3</code></pre>
 </ul></li>
 </ol>
 </section>
-<section id="assignment-1" class="slide level2">
+<section id="assignment-1" class="slide level2 smaller">
 <h2>Assignment 1</h2>
 <ol type="1">
 <li>Make a new folder somewhere in your computer and give it a good name.</li>
@@ -1060,8 +1090,8 @@ Treatment          79.3</code></pre>
 <li>Use the following code to extract the age column from our hypothetical dataset.</li>
 </ol>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb65"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a>data <span class="ot">=</span> <span class="fu">read_csv</span>(<span class="st">"data/HypotheticalData1.csv"</span>)</span>
-<span id="cb65-2"><a href="#cb65-2" aria-hidden="true" tabindex="-1"></a>age <span class="ot">=</span> data<span class="sc">$</span>Age</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb73"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb73-1"><a href="#cb73-1" aria-hidden="true" tabindex="-1"></a>data <span class="ot">=</span> <span class="fu">read_csv</span>(<span class="st">"https://raw.githubusercontent.com/knrumsey/NW_R_Course/main/data/HypotheticalData1.csv"</span>)</span>
+<span id="cb73-2"><a href="#cb73-2" aria-hidden="true" tabindex="-1"></a>age <span class="ot">=</span> data<span class="sc">$</span>Age</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="assignment-1-1" class="slide level2">
@@ -1076,20 +1106,20 @@ Treatment          79.3</code></pre>
 <section id="assignment-1-2" class="slide level2">
 <h2>Assignment 1</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb66"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 5. Use the following R functions on the age data: mean, sd, length</span></span>
-<span id="cb66-2"><a href="#cb66-2" aria-hidden="true" tabindex="-1"></a>m <span class="ot">=</span> <span class="fu">mean</span>(age)</span>
-<span id="cb66-3"><a href="#cb66-3" aria-hidden="true" tabindex="-1"></a>s <span class="ot">=</span> <span class="fu">sd</span>(age)</span>
-<span id="cb66-4"><a href="#cb66-4" aria-hidden="true" tabindex="-1"></a>l <span class="ot">=</span> <span class="fu">length</span>(age)</span>
-<span id="cb66-5"><a href="#cb66-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb66-6"><a href="#cb66-6" aria-hidden="true" tabindex="-1"></a>m <span class="co"># average patient age</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb74"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb74-1"><a href="#cb74-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 5. Use the following R functions on the age data: mean, sd, length</span></span>
+<span id="cb74-2"><a href="#cb74-2" aria-hidden="true" tabindex="-1"></a>m <span class="ot">=</span> <span class="fu">mean</span>(age)</span>
+<span id="cb74-3"><a href="#cb74-3" aria-hidden="true" tabindex="-1"></a>s <span class="ot">=</span> <span class="fu">sd</span>(age)</span>
+<span id="cb74-4"><a href="#cb74-4" aria-hidden="true" tabindex="-1"></a>l <span class="ot">=</span> <span class="fu">length</span>(age)</span>
+<span id="cb74-5"><a href="#cb74-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb74-6"><a href="#cb74-6" aria-hidden="true" tabindex="-1"></a>m <span class="co"># average patient age</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 45.98333</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb68"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a>s <span class="co"># standard deviation of patient age</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb76"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb76-1"><a href="#cb76-1" aria-hidden="true" tabindex="-1"></a>s <span class="co"># standard deviation of patient age</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 5.610196</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb70"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb70-1"><a href="#cb70-1" aria-hidden="true" tabindex="-1"></a>l <span class="co"># number of patients in the dataset</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb78"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb78-1"><a href="#cb78-1" aria-hidden="true" tabindex="-1"></a>l <span class="co"># number of patients in the dataset</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 60</code></pre>
 </div>
@@ -1098,9 +1128,9 @@ Treatment          79.3</code></pre>
 <section id="assignment-1-3" class="slide level2">
 <h2>Assignment 1</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb72"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb72-1"><a href="#cb72-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 6. What is the age of the $50^{th}$ patient? Save this in a new variable.</span></span>
-<span id="cb72-2"><a href="#cb72-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">=</span> age[<span class="dv">50</span>]</span>
-<span id="cb72-3"><a href="#cb72-3" aria-hidden="true" tabindex="-1"></a>x</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb80"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb80-1"><a href="#cb80-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 6. What is the age of the $50^{th}$ patient? Save this in a new variable.</span></span>
+<span id="cb80-2"><a href="#cb80-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">=</span> age[<span class="dv">50</span>]</span>
+<span id="cb80-3"><a href="#cb80-3" aria-hidden="true" tabindex="-1"></a>x</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 55</code></pre>
 </div>
@@ -1109,8 +1139,8 @@ Treatment          79.3</code></pre>
 <section id="assignment-1-4" class="slide level2">
 <h2>Assignment 1</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb74"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb74-1"><a href="#cb74-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 7. Calculate the "z-score" corresponding to this patients age. </span></span>
-<span id="cb74-2"><a href="#cb74-2" aria-hidden="true" tabindex="-1"></a>(x <span class="sc">-</span> m)<span class="sc">/</span>s</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb82"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb82-1"><a href="#cb82-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 7. Calculate the "z-score" corresponding to this patients age. </span></span>
+<span id="cb82-2"><a href="#cb82-2" aria-hidden="true" tabindex="-1"></a>(x <span class="sc">-</span> m)<span class="sc">/</span>s</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 1.607193</code></pre>
 </div>
@@ -1119,9 +1149,9 @@ Treatment          79.3</code></pre>
 <section id="assignment-1-5" class="slide level2">
 <h2>Assignment 1</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb76"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb76-1"><a href="#cb76-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 8. Use the cor() function to compute the correlation between age and SBP before treatment. </span></span>
-<span id="cb76-2"><a href="#cb76-2" aria-hidden="true" tabindex="-1"></a>sbp_before <span class="ot">=</span> data<span class="sc">$</span><span class="st">`</span><span class="at">Baseline SBP</span><span class="st">`</span></span>
-<span id="cb76-3"><a href="#cb76-3" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(age, sbp_before)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb84"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb84-1"><a href="#cb84-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 8. Use the cor() function to compute the correlation between age and SBP before treatment. </span></span>
+<span id="cb84-2"><a href="#cb84-2" aria-hidden="true" tabindex="-1"></a>sbp_before <span class="ot">=</span> data<span class="sc">$</span><span class="st">`</span><span class="at">Baseline SBP</span><span class="st">`</span></span>
+<span id="cb84-3"><a href="#cb84-3" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(age, sbp_before)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.7547318</code></pre>
 </div>
@@ -1152,9 +1182,9 @@ Treatment          79.3</code></pre>
 <h2>Reading and Writing CSV’s</h2>
 <p>The functions used to read and write csv files are:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb78"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb78-1"><a href="#cb78-1" aria-hidden="true" tabindex="-1"></a><span class="fu">read_csv</span>(<span class="st">"path_to_data_here"</span>)</span>
-<span id="cb78-2"><a href="#cb78-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb78-3"><a href="#cb78-3" aria-hidden="true" tabindex="-1"></a><span class="fu">write_csv</span>(data_frame_or_tibble_object, <span class="at">file=</span><span class="st">"path_to_save_location"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb86"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb86-1"><a href="#cb86-1" aria-hidden="true" tabindex="-1"></a><span class="fu">read_csv</span>(<span class="st">"path_to_data_here"</span>)</span>
+<span id="cb86-2"><a href="#cb86-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb86-3"><a href="#cb86-3" aria-hidden="true" tabindex="-1"></a><span class="fu">write_csv</span>(data_frame_or_tibble_object, <span class="at">file=</span><span class="st">"path_to_save_location"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>*Note: If you don’t have the tidyverse installed, you can use the functions <code>read.csv()</code> and <code>write.csv()</code> instead.</p>
 </section>
@@ -1162,9 +1192,9 @@ Treatment          79.3</code></pre>
 <h2>Reading and Writing CSV’s</h2>
 <p>Specific example.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb79"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb79-1"><a href="#cb79-1" aria-hidden="true" tabindex="-1"></a>my_tibble <span class="ot">=</span> <span class="fu">read_csv</span>(<span class="st">"data/HypotheticalData1.csv"</span>)</span>
-<span id="cb79-2"><a href="#cb79-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb79-3"><a href="#cb79-3" aria-hidden="true" tabindex="-1"></a><span class="fu">write_csv</span>(my_tibble, <span class="at">file=</span><span class="st">"data/making_up_a_file_name.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb87"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb87-1"><a href="#cb87-1" aria-hidden="true" tabindex="-1"></a>my_tibble <span class="ot">=</span> <span class="fu">read_csv</span>(<span class="st">"data/HypotheticalData1.csv"</span>)</span>
+<span id="cb87-2"><a href="#cb87-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb87-3"><a href="#cb87-3" aria-hidden="true" tabindex="-1"></a><span class="fu">write_csv</span>(my_tibble, <span class="at">file=</span><span class="st">"data/making_up_a_file_name.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Check the data folder.</p>
 </section>
@@ -1172,15 +1202,15 @@ Treatment          79.3</code></pre>
 <h2>Accessing a single column</h2>
 <p>Use the special R symbol <code>$</code> to quickly get a column out of a data frame.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb80"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb80-1"><a href="#cb80-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Get age variable</span></span>
-<span id="cb80-2"><a href="#cb80-2" aria-hidden="true" tabindex="-1"></a>data<span class="sc">$</span>Age</span>
-<span id="cb80-3"><a href="#cb80-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb80-4"><a href="#cb80-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Get headache variable</span></span>
-<span id="cb80-5"><a href="#cb80-5" aria-hidden="true" tabindex="-1"></a>data<span class="sc">$</span>Headache</span>
-<span id="cb80-6"><a href="#cb80-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb80-7"><a href="#cb80-7" aria-hidden="true" tabindex="-1"></a><span class="co"># If the variable name has a space, we have to use the ` symbol</span></span>
-<span id="cb80-8"><a href="#cb80-8" aria-hidden="true" tabindex="-1"></a><span class="co"># RStudio will let you "tab" autocomplete. </span></span>
-<span id="cb80-9"><a href="#cb80-9" aria-hidden="true" tabindex="-1"></a>data<span class="sc">$</span><span class="st">`</span><span class="at">Patient ID</span><span class="st">`</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb88"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb88-1"><a href="#cb88-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Get age variable</span></span>
+<span id="cb88-2"><a href="#cb88-2" aria-hidden="true" tabindex="-1"></a>data<span class="sc">$</span>Age</span>
+<span id="cb88-3"><a href="#cb88-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-4"><a href="#cb88-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Get headache variable</span></span>
+<span id="cb88-5"><a href="#cb88-5" aria-hidden="true" tabindex="-1"></a>data<span class="sc">$</span>Headache</span>
+<span id="cb88-6"><a href="#cb88-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-7"><a href="#cb88-7" aria-hidden="true" tabindex="-1"></a><span class="co"># If the variable name has a space, we have to use the ` symbol</span></span>
+<span id="cb88-8"><a href="#cb88-8" aria-hidden="true" tabindex="-1"></a><span class="co"># RStudio will let you "tab" autocomplete. </span></span>
+<span id="cb88-9"><a href="#cb88-9" aria-hidden="true" tabindex="-1"></a>data<span class="sc">$</span><span class="st">`</span><span class="at">Patient ID</span><span class="st">`</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="filter-and-select" class="slide level2">
@@ -1195,133 +1225,133 @@ Treatment          79.3</code></pre>
 <h2>Filter</h2>
 <p>Makes a new data frame with rows satisfying some criteria.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb81" data-code-line-numbers="1-3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb81-1"><a href="#cb81-1"></a><span class="co"># Split data set by treatment</span></span>
-<span id="cb81-2"><a href="#cb81-2"></a>data_control <span class="ot">=</span> <span class="fu">filter</span>(data, Treatment <span class="sc">==</span> <span class="st">"Control"</span>)</span>
-<span id="cb81-3"><a href="#cb81-3"></a>data_medX    <span class="ot">=</span> <span class="fu">filter</span>(data, Treatment <span class="sc">==</span> <span class="st">"MedX"</span>)</span>
-<span id="cb81-4"><a href="#cb81-4"></a></span>
-<span id="cb81-5"><a href="#cb81-5"></a><span class="co"># Another way (get everything EXCEPT for control group)</span></span>
-<span id="cb81-6"><a href="#cb81-6"></a>data_medX <span class="ot">=</span> <span class="fu">filter</span>(data, Treatment <span class="sc">!=</span> <span class="st">"Control"</span>)</span>
-<span id="cb81-7"><a href="#cb81-7"></a></span>
-<span id="cb81-8"><a href="#cb81-8"></a><span class="co"># Can add multiple groups</span></span>
-<span id="cb81-9"><a href="#cb81-9"></a>data_foo <span class="ot">=</span> <span class="fu">filter</span>(data, Treatment <span class="sc">==</span> <span class="st">"Control"</span>, </span>
-<span id="cb81-10"><a href="#cb81-10"></a>                        Age <span class="sc">&gt;=</span> <span class="dv">40</span>, </span>
-<span id="cb81-11"><a href="#cb81-11"></a>                        Headache <span class="sc">==</span> <span class="st">"No"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb89" data-code-line-numbers="1-3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb89-1"><a href="#cb89-1"></a><span class="co"># Split data set by treatment</span></span>
+<span id="cb89-2"><a href="#cb89-2"></a>data_control <span class="ot">=</span> <span class="fu">filter</span>(data, Treatment <span class="sc">==</span> <span class="st">"Control"</span>)</span>
+<span id="cb89-3"><a href="#cb89-3"></a>data_medX    <span class="ot">=</span> <span class="fu">filter</span>(data, Treatment <span class="sc">==</span> <span class="st">"MedX"</span>)</span>
+<span id="cb89-4"><a href="#cb89-4"></a></span>
+<span id="cb89-5"><a href="#cb89-5"></a><span class="co"># Another way (get everything EXCEPT for control group)</span></span>
+<span id="cb89-6"><a href="#cb89-6"></a>data_medX <span class="ot">=</span> <span class="fu">filter</span>(data, Treatment <span class="sc">!=</span> <span class="st">"Control"</span>)</span>
+<span id="cb89-7"><a href="#cb89-7"></a></span>
+<span id="cb89-8"><a href="#cb89-8"></a><span class="co"># Can add multiple groups</span></span>
+<span id="cb89-9"><a href="#cb89-9"></a>data_foo <span class="ot">=</span> <span class="fu">filter</span>(data, Treatment <span class="sc">==</span> <span class="st">"Control"</span>, </span>
+<span id="cb89-10"><a href="#cb89-10"></a>                        Age <span class="sc">&gt;=</span> <span class="dv">40</span>, </span>
+<span id="cb89-11"><a href="#cb89-11"></a>                        Headache <span class="sc">==</span> <span class="st">"No"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="filter-1" class="slide level2">
 <h2>Filter</h2>
 <p>Makes a new data frame with rows satisfying some criteria.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb82" data-code-line-numbers="5-6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb82-1"><a href="#cb82-1"></a><span class="co"># Split data set by treatment</span></span>
-<span id="cb82-2"><a href="#cb82-2"></a>data_control <span class="ot">=</span> <span class="fu">filter</span>(data, Treatment <span class="sc">==</span> <span class="st">"Control"</span>)</span>
-<span id="cb82-3"><a href="#cb82-3"></a>data_medX    <span class="ot">=</span> <span class="fu">filter</span>(data, Treatment <span class="sc">==</span> <span class="st">"MedX"</span>)</span>
-<span id="cb82-4"><a href="#cb82-4"></a></span>
-<span id="cb82-5"><a href="#cb82-5"></a><span class="co"># Another way (get everything EXCEPT for control group)</span></span>
-<span id="cb82-6"><a href="#cb82-6"></a>data_medX <span class="ot">=</span> <span class="fu">filter</span>(data, Treatment <span class="sc">!=</span> <span class="st">"Control"</span>)</span>
-<span id="cb82-7"><a href="#cb82-7"></a></span>
-<span id="cb82-8"><a href="#cb82-8"></a><span class="co"># Can add multiple groups</span></span>
-<span id="cb82-9"><a href="#cb82-9"></a>data_foo <span class="ot">=</span> <span class="fu">filter</span>(data, Treatment <span class="sc">==</span> <span class="st">"Control"</span>, </span>
-<span id="cb82-10"><a href="#cb82-10"></a>                        Age <span class="sc">&gt;=</span> <span class="dv">40</span>, </span>
-<span id="cb82-11"><a href="#cb82-11"></a>                        Headache <span class="sc">==</span> <span class="st">"No"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb90" data-code-line-numbers="5-6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb90-1"><a href="#cb90-1"></a><span class="co"># Split data set by treatment</span></span>
+<span id="cb90-2"><a href="#cb90-2"></a>data_control <span class="ot">=</span> <span class="fu">filter</span>(data, Treatment <span class="sc">==</span> <span class="st">"Control"</span>)</span>
+<span id="cb90-3"><a href="#cb90-3"></a>data_medX    <span class="ot">=</span> <span class="fu">filter</span>(data, Treatment <span class="sc">==</span> <span class="st">"MedX"</span>)</span>
+<span id="cb90-4"><a href="#cb90-4"></a></span>
+<span id="cb90-5"><a href="#cb90-5"></a><span class="co"># Another way (get everything EXCEPT for control group)</span></span>
+<span id="cb90-6"><a href="#cb90-6"></a>data_medX <span class="ot">=</span> <span class="fu">filter</span>(data, Treatment <span class="sc">!=</span> <span class="st">"Control"</span>)</span>
+<span id="cb90-7"><a href="#cb90-7"></a></span>
+<span id="cb90-8"><a href="#cb90-8"></a><span class="co"># Can add multiple groups</span></span>
+<span id="cb90-9"><a href="#cb90-9"></a>data_foo <span class="ot">=</span> <span class="fu">filter</span>(data, Treatment <span class="sc">==</span> <span class="st">"Control"</span>, </span>
+<span id="cb90-10"><a href="#cb90-10"></a>                        Age <span class="sc">&gt;=</span> <span class="dv">40</span>, </span>
+<span id="cb90-11"><a href="#cb90-11"></a>                        Headache <span class="sc">==</span> <span class="st">"No"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="filter-2" class="slide level2">
 <h2>Filter</h2>
 <p>Makes a new data frame with only the columns specified.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb83" data-code-line-numbers="8-10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb83-1"><a href="#cb83-1"></a><span class="co"># Split data set by treatment</span></span>
-<span id="cb83-2"><a href="#cb83-2"></a>data_control <span class="ot">=</span> <span class="fu">filter</span>(data, Treatment <span class="sc">==</span> <span class="st">"Control"</span>)</span>
-<span id="cb83-3"><a href="#cb83-3"></a>data_medX    <span class="ot">=</span> <span class="fu">filter</span>(data, Treatment <span class="sc">==</span> <span class="st">"MedX"</span>)</span>
-<span id="cb83-4"><a href="#cb83-4"></a></span>
-<span id="cb83-5"><a href="#cb83-5"></a><span class="co"># Another way (get everything EXCEPT for control group)</span></span>
-<span id="cb83-6"><a href="#cb83-6"></a>data_medX <span class="ot">=</span> <span class="fu">filter</span>(data, Treatment <span class="sc">!=</span> <span class="st">"Control"</span>)</span>
-<span id="cb83-7"><a href="#cb83-7"></a></span>
-<span id="cb83-8"><a href="#cb83-8"></a><span class="co"># Can add multiple groups</span></span>
-<span id="cb83-9"><a href="#cb83-9"></a>data_foo <span class="ot">=</span> <span class="fu">filter</span>(data, Treatment <span class="sc">==</span> <span class="st">"Control"</span>, </span>
-<span id="cb83-10"><a href="#cb83-10"></a>                        Age <span class="sc">&gt;=</span> <span class="dv">40</span>, </span>
-<span id="cb83-11"><a href="#cb83-11"></a>                        Headache <span class="sc">==</span> <span class="st">"No"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb91" data-code-line-numbers="8-10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb91-1"><a href="#cb91-1"></a><span class="co"># Split data set by treatment</span></span>
+<span id="cb91-2"><a href="#cb91-2"></a>data_control <span class="ot">=</span> <span class="fu">filter</span>(data, Treatment <span class="sc">==</span> <span class="st">"Control"</span>)</span>
+<span id="cb91-3"><a href="#cb91-3"></a>data_medX    <span class="ot">=</span> <span class="fu">filter</span>(data, Treatment <span class="sc">==</span> <span class="st">"MedX"</span>)</span>
+<span id="cb91-4"><a href="#cb91-4"></a></span>
+<span id="cb91-5"><a href="#cb91-5"></a><span class="co"># Another way (get everything EXCEPT for control group)</span></span>
+<span id="cb91-6"><a href="#cb91-6"></a>data_medX <span class="ot">=</span> <span class="fu">filter</span>(data, Treatment <span class="sc">!=</span> <span class="st">"Control"</span>)</span>
+<span id="cb91-7"><a href="#cb91-7"></a></span>
+<span id="cb91-8"><a href="#cb91-8"></a><span class="co"># Can add multiple groups</span></span>
+<span id="cb91-9"><a href="#cb91-9"></a>data_foo <span class="ot">=</span> <span class="fu">filter</span>(data, Treatment <span class="sc">==</span> <span class="st">"Control"</span>, </span>
+<span id="cb91-10"><a href="#cb91-10"></a>                        Age <span class="sc">&gt;=</span> <span class="dv">40</span>, </span>
+<span id="cb91-11"><a href="#cb91-11"></a>                        Headache <span class="sc">==</span> <span class="st">"No"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="select" class="slide level2">
 <h2>Select</h2>
 <p>Makes a new data frame with rows satisfying some criteria.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb84" data-code-line-numbers="1-2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb84-1"><a href="#cb84-1"></a><span class="co"># Keep the first 3 columns</span></span>
-<span id="cb84-2"><a href="#cb84-2"></a><span class="fu">select</span>(data, <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>)</span>
-<span id="cb84-3"><a href="#cb84-3"></a></span>
-<span id="cb84-4"><a href="#cb84-4"></a><span class="co"># Remove the first 3 columns</span></span>
-<span id="cb84-5"><a href="#cb84-5"></a><span class="fu">select</span>(data, <span class="sc">!</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>))</span>
-<span id="cb84-6"><a href="#cb84-6"></a></span>
-<span id="cb84-7"><a href="#cb84-7"></a><span class="co"># Specify which columns you want to keep</span></span>
-<span id="cb84-8"><a href="#cb84-8"></a><span class="fu">select</span>(data, <span class="fu">c</span>(<span class="st">"Treatment"</span>, <span class="st">"Headache"</span>))</span>
-<span id="cb84-9"><a href="#cb84-9"></a></span>
-<span id="cb84-10"><a href="#cb84-10"></a><span class="co"># Keep all columns which include the word "SBP"</span></span>
-<span id="cb84-11"><a href="#cb84-11"></a><span class="fu">select</span>(data, <span class="fu">contains</span>(<span class="st">"SBP"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb92" data-code-line-numbers="1-2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb92-1"><a href="#cb92-1"></a><span class="co"># Keep the first 3 columns</span></span>
+<span id="cb92-2"><a href="#cb92-2"></a><span class="fu">select</span>(data, <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>)</span>
+<span id="cb92-3"><a href="#cb92-3"></a></span>
+<span id="cb92-4"><a href="#cb92-4"></a><span class="co"># Remove the first 3 columns</span></span>
+<span id="cb92-5"><a href="#cb92-5"></a><span class="fu">select</span>(data, <span class="sc">!</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>))</span>
+<span id="cb92-6"><a href="#cb92-6"></a></span>
+<span id="cb92-7"><a href="#cb92-7"></a><span class="co"># Specify which columns you want to keep</span></span>
+<span id="cb92-8"><a href="#cb92-8"></a><span class="fu">select</span>(data, <span class="fu">c</span>(<span class="st">"Treatment"</span>, <span class="st">"Headache"</span>))</span>
+<span id="cb92-9"><a href="#cb92-9"></a></span>
+<span id="cb92-10"><a href="#cb92-10"></a><span class="co"># Keep all columns which include the word "SBP"</span></span>
+<span id="cb92-11"><a href="#cb92-11"></a><span class="fu">select</span>(data, <span class="fu">contains</span>(<span class="st">"SBP"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="select-1" class="slide level2">
 <h2>Select</h2>
 <p>Makes a new data frame with rows satisfying some criteria.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb85" data-code-line-numbers="4-5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb85-1"><a href="#cb85-1"></a><span class="co"># Keep the first 3 columns</span></span>
-<span id="cb85-2"><a href="#cb85-2"></a><span class="fu">select</span>(data, <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>)</span>
-<span id="cb85-3"><a href="#cb85-3"></a></span>
-<span id="cb85-4"><a href="#cb85-4"></a><span class="co"># Remove the first 3 columns</span></span>
-<span id="cb85-5"><a href="#cb85-5"></a><span class="fu">select</span>(data, <span class="sc">!</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>))</span>
-<span id="cb85-6"><a href="#cb85-6"></a></span>
-<span id="cb85-7"><a href="#cb85-7"></a><span class="co"># Specify which columns you want to keep</span></span>
-<span id="cb85-8"><a href="#cb85-8"></a><span class="fu">select</span>(data, <span class="fu">c</span>(<span class="st">"Treatment"</span>, <span class="st">"Headache"</span>))</span>
-<span id="cb85-9"><a href="#cb85-9"></a></span>
-<span id="cb85-10"><a href="#cb85-10"></a><span class="co"># Keep all columns which include the word "SBP"</span></span>
-<span id="cb85-11"><a href="#cb85-11"></a><span class="fu">select</span>(data, <span class="fu">contains</span>(<span class="st">"SBP"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb93" data-code-line-numbers="4-5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb93-1"><a href="#cb93-1"></a><span class="co"># Keep the first 3 columns</span></span>
+<span id="cb93-2"><a href="#cb93-2"></a><span class="fu">select</span>(data, <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>)</span>
+<span id="cb93-3"><a href="#cb93-3"></a></span>
+<span id="cb93-4"><a href="#cb93-4"></a><span class="co"># Remove the first 3 columns</span></span>
+<span id="cb93-5"><a href="#cb93-5"></a><span class="fu">select</span>(data, <span class="sc">!</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>))</span>
+<span id="cb93-6"><a href="#cb93-6"></a></span>
+<span id="cb93-7"><a href="#cb93-7"></a><span class="co"># Specify which columns you want to keep</span></span>
+<span id="cb93-8"><a href="#cb93-8"></a><span class="fu">select</span>(data, <span class="fu">c</span>(<span class="st">"Treatment"</span>, <span class="st">"Headache"</span>))</span>
+<span id="cb93-9"><a href="#cb93-9"></a></span>
+<span id="cb93-10"><a href="#cb93-10"></a><span class="co"># Keep all columns which include the word "SBP"</span></span>
+<span id="cb93-11"><a href="#cb93-11"></a><span class="fu">select</span>(data, <span class="fu">contains</span>(<span class="st">"SBP"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="select-2" class="slide level2">
 <h2>Select</h2>
 <p>Makes a new data frame with rows satisfying some criteria.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb86" data-code-line-numbers="7-8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb86-1"><a href="#cb86-1"></a><span class="co"># Keep the first 3 columns</span></span>
-<span id="cb86-2"><a href="#cb86-2"></a><span class="fu">select</span>(data, <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>)</span>
-<span id="cb86-3"><a href="#cb86-3"></a></span>
-<span id="cb86-4"><a href="#cb86-4"></a><span class="co"># Remove the first 3 columns</span></span>
-<span id="cb86-5"><a href="#cb86-5"></a><span class="fu">select</span>(data, <span class="sc">!</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>))</span>
-<span id="cb86-6"><a href="#cb86-6"></a></span>
-<span id="cb86-7"><a href="#cb86-7"></a><span class="co"># Specify which columns you want to keep</span></span>
-<span id="cb86-8"><a href="#cb86-8"></a><span class="fu">select</span>(data, <span class="fu">c</span>(<span class="st">"Treatment"</span>, <span class="st">"Headache"</span>))</span>
-<span id="cb86-9"><a href="#cb86-9"></a></span>
-<span id="cb86-10"><a href="#cb86-10"></a><span class="co"># Keep all columns which include the word "SBP"</span></span>
-<span id="cb86-11"><a href="#cb86-11"></a><span class="fu">select</span>(data, <span class="fu">contains</span>(<span class="st">"SBP"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb94" data-code-line-numbers="7-8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb94-1"><a href="#cb94-1"></a><span class="co"># Keep the first 3 columns</span></span>
+<span id="cb94-2"><a href="#cb94-2"></a><span class="fu">select</span>(data, <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>)</span>
+<span id="cb94-3"><a href="#cb94-3"></a></span>
+<span id="cb94-4"><a href="#cb94-4"></a><span class="co"># Remove the first 3 columns</span></span>
+<span id="cb94-5"><a href="#cb94-5"></a><span class="fu">select</span>(data, <span class="sc">!</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>))</span>
+<span id="cb94-6"><a href="#cb94-6"></a></span>
+<span id="cb94-7"><a href="#cb94-7"></a><span class="co"># Specify which columns you want to keep</span></span>
+<span id="cb94-8"><a href="#cb94-8"></a><span class="fu">select</span>(data, <span class="fu">c</span>(<span class="st">"Treatment"</span>, <span class="st">"Headache"</span>))</span>
+<span id="cb94-9"><a href="#cb94-9"></a></span>
+<span id="cb94-10"><a href="#cb94-10"></a><span class="co"># Keep all columns which include the word "SBP"</span></span>
+<span id="cb94-11"><a href="#cb94-11"></a><span class="fu">select</span>(data, <span class="fu">contains</span>(<span class="st">"SBP"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="select-3" class="slide level2">
 <h2>Select</h2>
 <p>Makes a new data frame with rows satisfying some criteria.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb87" data-code-line-numbers="10-11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb87-1"><a href="#cb87-1"></a><span class="co"># Keep the first 3 columns</span></span>
-<span id="cb87-2"><a href="#cb87-2"></a><span class="fu">select</span>(data, <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>)</span>
-<span id="cb87-3"><a href="#cb87-3"></a></span>
-<span id="cb87-4"><a href="#cb87-4"></a><span class="co"># Remove the first 3 columns</span></span>
-<span id="cb87-5"><a href="#cb87-5"></a><span class="fu">select</span>(data, <span class="sc">!</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>))</span>
-<span id="cb87-6"><a href="#cb87-6"></a></span>
-<span id="cb87-7"><a href="#cb87-7"></a><span class="co"># Specify which columns you want to keep</span></span>
-<span id="cb87-8"><a href="#cb87-8"></a><span class="fu">select</span>(data, <span class="fu">c</span>(<span class="st">"Treatment"</span>, <span class="st">"Headache"</span>))</span>
-<span id="cb87-9"><a href="#cb87-9"></a></span>
-<span id="cb87-10"><a href="#cb87-10"></a><span class="co"># Keep all columns which include the word "SBP"</span></span>
-<span id="cb87-11"><a href="#cb87-11"></a><span class="fu">select</span>(data, <span class="fu">contains</span>(<span class="st">"SBP"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb95" data-code-line-numbers="10-11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb95-1"><a href="#cb95-1"></a><span class="co"># Keep the first 3 columns</span></span>
+<span id="cb95-2"><a href="#cb95-2"></a><span class="fu">select</span>(data, <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>)</span>
+<span id="cb95-3"><a href="#cb95-3"></a></span>
+<span id="cb95-4"><a href="#cb95-4"></a><span class="co"># Remove the first 3 columns</span></span>
+<span id="cb95-5"><a href="#cb95-5"></a><span class="fu">select</span>(data, <span class="sc">!</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>))</span>
+<span id="cb95-6"><a href="#cb95-6"></a></span>
+<span id="cb95-7"><a href="#cb95-7"></a><span class="co"># Specify which columns you want to keep</span></span>
+<span id="cb95-8"><a href="#cb95-8"></a><span class="fu">select</span>(data, <span class="fu">c</span>(<span class="st">"Treatment"</span>, <span class="st">"Headache"</span>))</span>
+<span id="cb95-9"><a href="#cb95-9"></a></span>
+<span id="cb95-10"><a href="#cb95-10"></a><span class="co"># Keep all columns which include the word "SBP"</span></span>
+<span id="cb95-11"><a href="#cb95-11"></a><span class="fu">select</span>(data, <span class="fu">contains</span>(<span class="st">"SBP"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="mutate" class="slide level2">
 <h2>Mutate</h2>
 <p>Used to create new variables in your data frame.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb88"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb88-1"><a href="#cb88-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Get the reduction in SBP after treatment</span></span>
-<span id="cb88-2"><a href="#cb88-2" aria-hidden="true" tabindex="-1"></a>data <span class="ot">=</span> <span class="fu">mutate</span>(data, <span class="st">`</span><span class="at">SBP Decrease</span><span class="st">`</span> <span class="ot">=</span> <span class="st">`</span><span class="at">Baseline SBP</span><span class="st">`</span> <span class="sc">-</span> <span class="st">`</span><span class="at">Post Treatment SBP</span><span class="st">`</span>)</span>
-<span id="cb88-3"><a href="#cb88-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb88-4"><a href="#cb88-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Get age in months</span></span>
-<span id="cb88-5"><a href="#cb88-5" aria-hidden="true" tabindex="-1"></a>data <span class="ot">=</span> <span class="fu">mutate</span>(data, <span class="at">AgeMonths =</span> <span class="dv">12</span> <span class="sc">*</span> Age)</span>
-<span id="cb88-6"><a href="#cb88-6" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb88-7"><a href="#cb88-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Delete the age in months variable</span></span>
-<span id="cb88-8"><a href="#cb88-8" aria-hidden="true" tabindex="-1"></a>data <span class="ot">=</span> <span class="fu">select</span>(data, <span class="sc">!</span>AgeMonths)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb96"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb96-1"><a href="#cb96-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Get the reduction in SBP after treatment</span></span>
+<span id="cb96-2"><a href="#cb96-2" aria-hidden="true" tabindex="-1"></a>data <span class="ot">=</span> <span class="fu">mutate</span>(data, <span class="st">`</span><span class="at">SBP Decrease</span><span class="st">`</span> <span class="ot">=</span> <span class="st">`</span><span class="at">Baseline SBP</span><span class="st">`</span> <span class="sc">-</span> <span class="st">`</span><span class="at">Post Treatment SBP</span><span class="st">`</span>)</span>
+<span id="cb96-3"><a href="#cb96-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb96-4"><a href="#cb96-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Get age in months</span></span>
+<span id="cb96-5"><a href="#cb96-5" aria-hidden="true" tabindex="-1"></a>data <span class="ot">=</span> <span class="fu">mutate</span>(data, <span class="at">AgeMonths =</span> <span class="dv">12</span> <span class="sc">*</span> Age)</span>
+<span id="cb96-6"><a href="#cb96-6" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb96-7"><a href="#cb96-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Delete the age in months variable</span></span>
+<span id="cb96-8"><a href="#cb96-8" aria-hidden="true" tabindex="-1"></a>data <span class="ot">=</span> <span class="fu">select</span>(data, <span class="sc">!</span>AgeMonths)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="other-useful-functions" class="slide level2 smaller">
@@ -1351,24 +1381,41 @@ Treatment          79.3</code></pre>
 <section id="assignment-2-solution" class="slide level2">
 <h2>Assignment 2 (Solution)</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb89"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb89-1"><a href="#cb89-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. Save ("write") your data frame object as a csv inside the data folder</span></span>
-<span id="cb89-2"><a href="#cb89-2" aria-hidden="true" tabindex="-1"></a><span class="fu">write_csv</span>(data, <span class="at">file=</span><span class="st">"making_up_a_file_name.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb97"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb97-1"><a href="#cb97-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. Save ("write") your data frame object as a csv inside the data folder</span></span>
+<span id="cb97-2"><a href="#cb97-2" aria-hidden="true" tabindex="-1"></a><span class="fu">write_csv</span>(data, <span class="at">file=</span><span class="st">"data/making_up_a_file_name.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="assignment-2-solution-1" class="slide level2">
 <h2>Assignment 2 (Solution)</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb90"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb90-1"><a href="#cb90-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 3. Suppose that patients $7$, $21$, and $45$ have corrupted data. Use filter() to remove them from the data set.</span></span>
-<span id="cb90-2"><a href="#cb90-2" aria-hidden="true" tabindex="-1"></a><span class="fu">write_csv</span>(data, <span class="at">file=</span><span class="st">"making_up_a_file_name.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb98"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb98-1"><a href="#cb98-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 3. Suppose that patients $7$, $21$, and $45$ have corrupted data. Use filter() to remove them from the data set.</span></span>
+<span id="cb98-2"><a href="#cb98-2" aria-hidden="true" tabindex="-1"></a><span class="fu">filter</span>(data, )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 60 × 7
+   `Patient ID`   Age Treatment `Baseline SBP` `Post Treatment SBP` Headache
+          &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;              &lt;dbl&gt;                &lt;dbl&gt; &lt;chr&gt;   
+ 1            1    45 Control             131.                 132. No      
+ 2            2    43 Control             129.                 126. No      
+ 3            3    44 Control             132.                 136. No      
+ 4            4    46 Control             129.                 134  No      
+ 5            5    49 Control             136.                 137. No      
+ 6            6    41 Control             127.                 128. No      
+ 7            7    41 Control             124.                 120. No      
+ 8            8    51 Control             130.                 131. Yes     
+ 9            9    48 Control             130.                 134. No      
+10           10    45 Control             126.                 127. No      
+# ℹ 50 more rows
+# ℹ 1 more variable: `SBP Decrease` &lt;dbl&gt;</code></pre>
+</div>
 </div>
 </section>
 <section id="assignment-2-solution-2" class="slide level2">
 <h2>Assignment 2 (Solution)</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb91"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb91-1"><a href="#cb91-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 4. Use mutate() to create a new column in the data frame which is TRUE if SBP decreased after treatment.</span></span>
-<span id="cb91-2"><a href="#cb91-2" aria-hidden="true" tabindex="-1"></a>data <span class="ot">=</span> <span class="fu">mutate</span>(data, <span class="st">`</span><span class="at">SBP Decrease Logical</span><span class="st">`</span> <span class="ot">=</span> (<span class="st">`</span><span class="at">Baseline SBP</span><span class="st">`</span> <span class="sc">&gt;</span> <span class="st">`</span><span class="at">Post Treatment SBP</span><span class="st">`</span>),</span>
-<span id="cb91-3"><a href="#cb91-3" aria-hidden="true" tabindex="-1"></a>              <span class="at">.after =</span> Treatment)</span>
-<span id="cb91-4"><a href="#cb91-4" aria-hidden="true" tabindex="-1"></a>data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb100"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb100-1"><a href="#cb100-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 4. Use mutate() to create a new column in the data frame which is TRUE if SBP decreased after treatment.</span></span>
+<span id="cb100-2"><a href="#cb100-2" aria-hidden="true" tabindex="-1"></a>data <span class="ot">=</span> <span class="fu">mutate</span>(data, <span class="st">`</span><span class="at">SBP Decrease Logical</span><span class="st">`</span> <span class="ot">=</span> (<span class="st">`</span><span class="at">Baseline SBP</span><span class="st">`</span> <span class="sc">&gt;</span> <span class="st">`</span><span class="at">Post Treatment SBP</span><span class="st">`</span>),</span>
+<span id="cb100-3"><a href="#cb100-3" aria-hidden="true" tabindex="-1"></a>              <span class="at">.after =</span> Treatment)</span>
+<span id="cb100-4"><a href="#cb100-4" aria-hidden="true" tabindex="-1"></a>data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 60 × 8
    `Patient ID`   Age Treatment `SBP Decrease Logical` `Baseline SBP`
@@ -1392,9 +1439,9 @@ Treatment          79.3</code></pre>
 <section id="assignment-2-solution-3" class="slide level2">
 <h2>Assignment 2 (Solution)</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb93"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb93-1"><a href="#cb93-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 5. Use the select() function to get a data frame (give it a new name) with only the columns Treatment, Headache and SBP Decrease.</span></span>
-<span id="cb93-2"><a href="#cb93-2" aria-hidden="true" tabindex="-1"></a>data_mod <span class="ot">=</span> <span class="fu">select</span>(data, <span class="fu">c</span>(<span class="st">"Treatment"</span>, <span class="st">"Headache"</span>, <span class="st">"SBP Decrease"</span>))</span>
-<span id="cb93-3"><a href="#cb93-3" aria-hidden="true" tabindex="-1"></a>data_mod</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb102"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb102-1"><a href="#cb102-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 5. Use the select() function to get a data frame (give it a new name) with only the columns Treatment, Headache and SBP Decrease.</span></span>
+<span id="cb102-2"><a href="#cb102-2" aria-hidden="true" tabindex="-1"></a>data_mod <span class="ot">=</span> <span class="fu">select</span>(data, <span class="fu">c</span>(<span class="st">"Treatment"</span>, <span class="st">"Headache"</span>, <span class="st">"SBP Decrease"</span>))</span>
+<span id="cb102-3"><a href="#cb102-3" aria-hidden="true" tabindex="-1"></a>data_mod</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 60 × 3
    Treatment Headache `SBP Decrease`
@@ -1416,22 +1463,22 @@ Treatment          79.3</code></pre>
 <section id="assignment-2-solution-4" class="slide level2">
 <h2>Assignment 2 (Solution)</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb95"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb95-1"><a href="#cb95-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 6. Use filter() to create two new data frames separated by Treatment. Calculate the average SBP decrease for both datasets. </span></span>
-<span id="cb95-2"><a href="#cb95-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb95-3"><a href="#cb95-3" aria-hidden="true" tabindex="-1"></a>data_control <span class="ot">=</span> <span class="fu">filter</span>(data, Treatment <span class="sc">==</span> <span class="st">"Control"</span>)</span>
-<span id="cb95-4"><a href="#cb95-4" aria-hidden="true" tabindex="-1"></a>data_medX <span class="ot">=</span> <span class="fu">filter</span>(data, Treatment <span class="sc">!=</span> <span class="st">"Control"</span>)</span>
-<span id="cb95-5"><a href="#cb95-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb95-6"><a href="#cb95-6" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(data_control<span class="sc">$</span><span class="st">`</span><span class="at">SBP Decrease</span><span class="st">`</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb104"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb104-1"><a href="#cb104-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 6. Use filter() to create two new data frames separated by Treatment. Calculate the average SBP decrease for both datasets. </span></span>
+<span id="cb104-2"><a href="#cb104-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb104-3"><a href="#cb104-3" aria-hidden="true" tabindex="-1"></a>data_control <span class="ot">=</span> <span class="fu">filter</span>(data, Treatment <span class="sc">==</span> <span class="st">"Control"</span>)</span>
+<span id="cb104-4"><a href="#cb104-4" aria-hidden="true" tabindex="-1"></a>data_medX <span class="ot">=</span> <span class="fu">filter</span>(data, Treatment <span class="sc">!=</span> <span class="st">"Control"</span>)</span>
+<span id="cb104-5"><a href="#cb104-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb104-6"><a href="#cb104-6" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(data_control<span class="sc">$</span><span class="st">`</span><span class="at">SBP Decrease</span><span class="st">`</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] -0.1733333</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb97"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb97-1"><a href="#cb97-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(data_medX<span class="sc">$</span><span class="st">`</span><span class="at">SBP Decrease</span><span class="st">`</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb106"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb106-1"><a href="#cb106-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(data_medX<span class="sc">$</span><span class="st">`</span><span class="at">SBP Decrease</span><span class="st">`</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 6.22</code></pre>
 </div>
 </div>
 </section>
-<section id="part-3-plotting-with-r" class="slide level2">
+<section id="part-3-plotting-with-r" class="slide level2 smaller">
 <h2>Part 3: Plotting with R</h2>
 <p>There are lots of options for plotting with base R.</p>
 <ul>
@@ -1447,25 +1494,25 @@ Treatment          79.3</code></pre>
 <section id="customizing-plots-with-arguments" class="slide level2">
 <h2>Customizing plots with “arguments”</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb99"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb99-1"><a href="#cb99-1" aria-hidden="true" tabindex="-1"></a>num_pts <span class="ot">=</span> <span class="dv">50</span></span>
-<span id="cb99-2"><a href="#cb99-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">=</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="at">length=</span>num_pts)</span>
-<span id="cb99-3"><a href="#cb99-3" aria-hidden="true" tabindex="-1"></a>y <span class="ot">=</span> x<span class="sc">^</span><span class="dv">2</span> <span class="sc">+</span> <span class="fu">rnorm</span>(num_pts, <span class="at">mean=</span><span class="dv">0</span>, <span class="at">sd=</span><span class="fl">0.1</span>)</span>
-<span id="cb99-4"><a href="#cb99-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x, y)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-
-</div>
-<img data-src="Intro2R_files/figure-revealjs/unnamed-chunk-56-1.png" width="960" class="r-stretch"></section>
-<section id="add-labels-and-title" class="slide level2">
-<h2>Add labels and title</h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb100"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb100-1"><a href="#cb100-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x, y,</span>
-<span id="cb100-2"><a href="#cb100-2" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab=</span><span class="st">"Popularity of the name Monica"</span>,</span>
-<span id="cb100-3"><a href="#cb100-3" aria-hidden="true" tabindex="-1"></a>     <span class="at">ylab=</span><span class="st">"The marriage rate in Nevada"</span>,</span>
-<span id="cb100-4"><a href="#cb100-4" aria-hidden="true" tabindex="-1"></a>     <span class="at">main=</span><span class="st">"A Plot with a Spurious Correlation"</span>,</span>
-<span id="cb100-5"><a href="#cb100-5" aria-hidden="true" tabindex="-1"></a>     <span class="at">sub=</span><span class="st">"A subitle - alsjdka"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb108"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb108-1"><a href="#cb108-1" aria-hidden="true" tabindex="-1"></a>num_pts <span class="ot">=</span> <span class="dv">50</span></span>
+<span id="cb108-2"><a href="#cb108-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">=</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="at">length=</span>num_pts)</span>
+<span id="cb108-3"><a href="#cb108-3" aria-hidden="true" tabindex="-1"></a>y <span class="ot">=</span> x<span class="sc">^</span><span class="dv">2</span> <span class="sc">+</span> <span class="fu">rnorm</span>(num_pts, <span class="at">mean=</span><span class="dv">0</span>, <span class="at">sd=</span><span class="fl">0.1</span>)</span>
+<span id="cb108-4"><a href="#cb108-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x, y)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
 <img data-src="Intro2R_files/figure-revealjs/unnamed-chunk-57-1.png" width="960" class="r-stretch"></section>
-<section id="customize-the-look-of-the-figure" class="slide level2">
+<section id="add-labels-and-title" class="slide level2">
+<h2>Add labels and title</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb109"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb109-1"><a href="#cb109-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x, y,</span>
+<span id="cb109-2"><a href="#cb109-2" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab=</span><span class="st">"Popularity of the name Monica"</span>,</span>
+<span id="cb109-3"><a href="#cb109-3" aria-hidden="true" tabindex="-1"></a>     <span class="at">ylab=</span><span class="st">"The marriage rate in Nevada"</span>,</span>
+<span id="cb109-4"><a href="#cb109-4" aria-hidden="true" tabindex="-1"></a>     <span class="at">main=</span><span class="st">"A Plot with a Spurious Correlation"</span>,</span>
+<span id="cb109-5"><a href="#cb109-5" aria-hidden="true" tabindex="-1"></a>     <span class="at">sub=</span><span class="st">"A subitle - alsjdka"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+</div>
+<img data-src="Intro2R_files/figure-revealjs/unnamed-chunk-58-1.png" width="960" class="r-stretch"></section>
+<section id="customize-the-look-of-the-figure" class="slide level2 smaller">
 <h2>Customize the look of the figure</h2>
 <ul>
 <li><p><code>pch</code> - <a href="http://www.sthda.com/english/wiki/r-plot-pch-symbols-the-different-point-shapes-available-in-r">Plotting symbols</a> (a number from 0 to 25)</p></li>
@@ -1476,11 +1523,11 @@ Treatment          79.3</code></pre>
 <li><p><code>cex</code> - size (default 1)</p></li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb101"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb101-1"><a href="#cb101-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x, y, <span class="at">pch=</span><span class="dv">15</span>, <span class="at">col=</span><span class="st">"burlywood4"</span>, <span class="at">type=</span><span class="st">'o'</span>, <span class="at">lwd=</span><span class="dv">2</span>, <span class="at">lty=</span><span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb110"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb110-1"><a href="#cb110-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x, y, <span class="at">pch=</span><span class="dv">15</span>, <span class="at">col=</span><span class="st">"burlywood4"</span>, <span class="at">type=</span><span class="st">'o'</span>, <span class="at">lwd=</span><span class="dv">2</span>, <span class="at">lty=</span><span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
-<img data-src="Intro2R_files/figure-revealjs/unnamed-chunk-58-1.png" width="960" class="r-stretch"></section>
-<section id="adding-layers-to-figure" class="slide level2">
+<img data-src="Intro2R_files/figure-revealjs/unnamed-chunk-59-1.png" width="960" class="r-stretch"></section>
+<section id="adding-layers-to-figure" class="slide level2 smaller">
 <h2>Adding layers to figure</h2>
 <ul>
 <li><p><code>points(x, y)</code> - add points to current figure</p></li>
@@ -1489,12 +1536,12 @@ Treatment          79.3</code></pre>
 <li><p><code>legend()</code> - add a legend</p></li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb102"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb102-1"><a href="#cb102-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x, y, <span class="at">col=</span><span class="st">"burlywood4"</span>, <span class="at">type=</span><span class="st">'l'</span>, <span class="at">lwd=</span><span class="dv">2</span>, <span class="at">lty=</span><span class="dv">3</span>)</span>
-<span id="cb102-2"><a href="#cb102-2" aria-hidden="true" tabindex="-1"></a><span class="fu">points</span>(x, y, <span class="at">pch=</span><span class="dv">16</span>, <span class="at">col=</span><span class="st">"mediumvioletred"</span>, <span class="at">cex=</span><span class="fl">1.3</span>)</span>
-<span id="cb102-3"><a href="#cb102-3" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">"topleft"</span>, <span class="at">legend=</span><span class="fu">c</span>(<span class="st">"this is data"</span>), <span class="at">pch=</span><span class="dv">16</span>, <span class="at">col=</span><span class="st">"mediumvioletred"</span>, <span class="at">bty=</span><span class="st">"n"</span>, <span class="at">cex=</span><span class="fl">1.5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb111"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb111-1"><a href="#cb111-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x, y, <span class="at">col=</span><span class="st">"burlywood4"</span>, <span class="at">type=</span><span class="st">'l'</span>, <span class="at">lwd=</span><span class="dv">2</span>, <span class="at">lty=</span><span class="dv">3</span>)</span>
+<span id="cb111-2"><a href="#cb111-2" aria-hidden="true" tabindex="-1"></a><span class="fu">points</span>(x, y, <span class="at">pch=</span><span class="dv">16</span>, <span class="at">col=</span><span class="st">"mediumvioletred"</span>, <span class="at">cex=</span><span class="fl">1.3</span>)</span>
+<span id="cb111-3"><a href="#cb111-3" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">"topleft"</span>, <span class="at">legend=</span><span class="fu">c</span>(<span class="st">"this is data"</span>), <span class="at">pch=</span><span class="dv">16</span>, <span class="at">col=</span><span class="st">"mediumvioletred"</span>, <span class="at">bty=</span><span class="st">"n"</span>, <span class="at">cex=</span><span class="fl">1.5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
-<img data-src="Intro2R_files/figure-revealjs/unnamed-chunk-59-1.png" width="960" class="r-stretch"></section>
+<img data-src="Intro2R_files/figure-revealjs/unnamed-chunk-60-1.png" width="960" class="r-stretch"></section>
 <section id="saving-figures" class="slide level2">
 <h2>Saving Figures</h2>
 <h4 id="version-1">Version 1</h4>
@@ -1502,31 +1549,31 @@ Treatment          79.3</code></pre>
 <h4 id="version-2">Version 2</h4>
 <p>Use R to save as a <code>.png</code> file. Specify the size and resolution.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb103" data-code-line-numbers="1,5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb103-1"><a href="#cb103-1"></a><span class="fu">png</span>(<span class="st">"figs/my_scatterplot.png"</span>, <span class="at">height=</span><span class="dv">5</span>, <span class="at">width=</span><span class="dv">8</span>, <span class="at">units=</span><span class="st">"in"</span>, <span class="at">res=</span><span class="dv">300</span>)</span>
-<span id="cb103-2"><a href="#cb103-2"></a><span class="fu">plot</span>(x, y, <span class="at">col=</span><span class="st">"burlywood4"</span>, <span class="at">type=</span><span class="st">'l'</span>, <span class="at">lwd=</span><span class="dv">2</span>, <span class="at">lty=</span><span class="dv">3</span>)</span>
-<span id="cb103-3"><a href="#cb103-3"></a><span class="fu">points</span>(x, y, <span class="at">pch=</span><span class="dv">16</span>, <span class="at">col=</span><span class="st">"mediumvioletred"</span>, <span class="at">cex=</span><span class="fl">1.3</span>)</span>
-<span id="cb103-4"><a href="#cb103-4"></a><span class="fu">legend</span>(<span class="st">"topleft"</span>, <span class="at">legend=</span><span class="fu">c</span>(<span class="st">"this is data"</span>), <span class="at">pch=</span><span class="dv">16</span>, <span class="at">col=</span><span class="st">"mediumvioletred"</span>, <span class="at">bty=</span><span class="st">"n"</span>, <span class="at">cex=</span><span class="fl">1.5</span>)</span>
-<span id="cb103-5"><a href="#cb103-5"></a><span class="fu">dev.off</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb112" data-code-line-numbers="1,5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb112-1"><a href="#cb112-1"></a><span class="fu">png</span>(<span class="st">"figs/my_scatterplot.png"</span>, <span class="at">height=</span><span class="dv">5</span>, <span class="at">width=</span><span class="dv">8</span>, <span class="at">units=</span><span class="st">"in"</span>, <span class="at">res=</span><span class="dv">300</span>)</span>
+<span id="cb112-2"><a href="#cb112-2"></a><span class="fu">plot</span>(x, y, <span class="at">col=</span><span class="st">"burlywood4"</span>, <span class="at">type=</span><span class="st">'l'</span>, <span class="at">lwd=</span><span class="dv">2</span>, <span class="at">lty=</span><span class="dv">3</span>)</span>
+<span id="cb112-3"><a href="#cb112-3"></a><span class="fu">points</span>(x, y, <span class="at">pch=</span><span class="dv">16</span>, <span class="at">col=</span><span class="st">"mediumvioletred"</span>, <span class="at">cex=</span><span class="fl">1.3</span>)</span>
+<span id="cb112-4"><a href="#cb112-4"></a><span class="fu">legend</span>(<span class="st">"topleft"</span>, <span class="at">legend=</span><span class="fu">c</span>(<span class="st">"this is data"</span>), <span class="at">pch=</span><span class="dv">16</span>, <span class="at">col=</span><span class="st">"mediumvioletred"</span>, <span class="at">bty=</span><span class="st">"n"</span>, <span class="at">cex=</span><span class="fl">1.5</span>)</span>
+<span id="cb112-5"><a href="#cb112-5"></a><span class="fu">dev.off</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="other-plotting-functions" class="slide level2 smaller">
 <h2>Other Plotting Functions</h2>
 <p>Other figures work similarly. You can see additional arguments typing <code>?</code> before the function name in the console.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb104"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb104-1"><a href="#cb104-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Make up some data</span></span>
-<span id="cb104-2"><a href="#cb104-2" aria-hidden="true" tabindex="-1"></a>cheese_consumption <span class="ot">&lt;-</span> <span class="fu">rgamma</span>(<span class="dv">500</span>, <span class="dv">15</span>, <span class="dv">3</span>)</span>
-<span id="cb104-3"><a href="#cb104-3" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(cheese_consumption, </span>
-<span id="cb104-4"><a href="#cb104-4" aria-hidden="true" tabindex="-1"></a>     <span class="at">main=</span><span class="st">""</span>, <span class="at">xlab=</span><span class="st">"Cheese Consumption (Pounds)"</span>,</span>
-<span id="cb104-5"><a href="#cb104-5" aria-hidden="true" tabindex="-1"></a>     <span class="at">col=</span><span class="st">"orange"</span>, <span class="at">border=</span><span class="st">"dodgerblue"</span>,</span>
-<span id="cb104-6"><a href="#cb104-6" aria-hidden="true" tabindex="-1"></a>     <span class="at">breaks=</span><span class="dv">30</span>,  <span class="co"># specify the number of histogram bars</span></span>
-<span id="cb104-7"><a href="#cb104-7" aria-hidden="true" tabindex="-1"></a>     <span class="at">freq=</span><span class="cn">FALSE</span>, <span class="co"># plot on a probability (density) scale</span></span>
-<span id="cb104-8"><a href="#cb104-8" aria-hidden="true" tabindex="-1"></a>     )</span>
-<span id="cb104-9"><a href="#cb104-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Add a smooth line approximation</span></span>
-<span id="cb104-10"><a href="#cb104-10" aria-hidden="true" tabindex="-1"></a>d <span class="ot">=</span> <span class="fu">density</span>(cheese_consumption)</span>
-<span id="cb104-11"><a href="#cb104-11" aria-hidden="true" tabindex="-1"></a><span class="fu">polygon</span>(d, <span class="at">lwd=</span><span class="dv">2</span>, <span class="at">border=</span><span class="st">"dodgerblue"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb113"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb113-1"><a href="#cb113-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Make up some data</span></span>
+<span id="cb113-2"><a href="#cb113-2" aria-hidden="true" tabindex="-1"></a>cheese_consumption <span class="ot">&lt;-</span> <span class="fu">rgamma</span>(<span class="dv">500</span>, <span class="dv">15</span>, <span class="dv">3</span>)</span>
+<span id="cb113-3"><a href="#cb113-3" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(cheese_consumption, </span>
+<span id="cb113-4"><a href="#cb113-4" aria-hidden="true" tabindex="-1"></a>     <span class="at">main=</span><span class="st">""</span>, <span class="at">xlab=</span><span class="st">"Cheese Consumption (Pounds)"</span>,</span>
+<span id="cb113-5"><a href="#cb113-5" aria-hidden="true" tabindex="-1"></a>     <span class="at">col=</span><span class="st">"orange"</span>, <span class="at">border=</span><span class="st">"dodgerblue"</span>,</span>
+<span id="cb113-6"><a href="#cb113-6" aria-hidden="true" tabindex="-1"></a>     <span class="at">breaks=</span><span class="dv">30</span>,  <span class="co"># specify the number of histogram bars</span></span>
+<span id="cb113-7"><a href="#cb113-7" aria-hidden="true" tabindex="-1"></a>     <span class="at">freq=</span><span class="cn">FALSE</span>, <span class="co"># plot on a probability (density) scale</span></span>
+<span id="cb113-8"><a href="#cb113-8" aria-hidden="true" tabindex="-1"></a>     )</span>
+<span id="cb113-9"><a href="#cb113-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Add a smooth line approximation</span></span>
+<span id="cb113-10"><a href="#cb113-10" aria-hidden="true" tabindex="-1"></a>d <span class="ot">=</span> <span class="fu">density</span>(cheese_consumption)</span>
+<span id="cb113-11"><a href="#cb113-11" aria-hidden="true" tabindex="-1"></a><span class="fu">polygon</span>(d, <span class="at">lwd=</span><span class="dv">2</span>, <span class="at">border=</span><span class="st">"dodgerblue"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
-<img data-src="Intro2R_files/figure-revealjs/unnamed-chunk-61-1.png" width="960" class="r-stretch"></section>
+<img data-src="Intro2R_files/figure-revealjs/unnamed-chunk-62-1.png" width="960" class="r-stretch"></section>
 <section id="statistics-teaching-moment-qqplots" class="slide level2 smaller">
 <h2>Statistics Teaching Moment (QQPlots)</h2>
 <p>There are many highly specialized functions in R.</p>
@@ -1537,49 +1584,46 @@ Treatment          79.3</code></pre>
 <li><p>Points are “S” shaped - distribution has “heavy tails”</p></li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb105"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb105-1"><a href="#cb105-1" aria-hidden="true" tabindex="-1"></a><span class="co"># QQ Plot for cheese data</span></span>
-<span id="cb105-2"><a href="#cb105-2" aria-hidden="true" tabindex="-1"></a><span class="fu">qqnorm</span>(cheese_consumption)</span>
-<span id="cb105-3"><a href="#cb105-3" aria-hidden="true" tabindex="-1"></a><span class="fu">qqline</span>(cheese_consumption)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb114"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb114-1"><a href="#cb114-1" aria-hidden="true" tabindex="-1"></a><span class="co"># QQ Plot for cheese data</span></span>
+<span id="cb114-2"><a href="#cb114-2" aria-hidden="true" tabindex="-1"></a><span class="fu">qqnorm</span>(cheese_consumption)</span>
+<span id="cb114-3"><a href="#cb114-3" aria-hidden="true" tabindex="-1"></a><span class="fu">qqline</span>(cheese_consumption)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
-<img data-src="Intro2R_files/figure-revealjs/unnamed-chunk-62-1.png" width="960" class="r-stretch"></section>
+<img data-src="Intro2R_files/figure-revealjs/unnamed-chunk-63-1.png" width="960" class="r-stretch"></section>
 <section id="statistics-teaching-moment-qqplots-1" class="slide level2 smaller">
 <h2>Statistics Teaching Moment (QQPlots)</h2>
 <p>Let’s install a separate package so we can look at QQ Plots more closely.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb106"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb106-1"><a href="#cb106-1" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages("car")</span></span>
-<span id="cb106-2"><a href="#cb106-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"car"</span>)</span>
-<span id="cb106-3"><a href="#cb106-3" aria-hidden="true" tabindex="-1"></a><span class="fu">qqPlot</span>(cheese_consumption)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb115"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb115-1"><a href="#cb115-1" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages("car")</span></span>
+<span id="cb115-2"><a href="#cb115-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"car"</span>)</span>
+<span id="cb115-3"><a href="#cb115-3" aria-hidden="true" tabindex="-1"></a><span class="fu">qqPlot</span>(cheese_consumption)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 284 219</code></pre>
+<pre><code>[1] 438 478</code></pre>
 </div>
 </div>
-<img data-src="Intro2R_files/figure-revealjs/unnamed-chunk-63-1.png" width="960" class="r-stretch"></section>
+<img data-src="Intro2R_files/figure-revealjs/unnamed-chunk-64-1.png" width="960" class="r-stretch"></section>
 <section id="boxplot" class="slide level2">
 <h2>Boxplot</h2>
 <p>The base R boxplot function works a lot like the other functions.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb108"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb108-1"><a href="#cb108-1" aria-hidden="true" tabindex="-1"></a>y <span class="ot">=</span> iris<span class="sc">$</span>Sepal.Length <span class="co"># A built in dataset</span></span>
-<span id="cb108-2"><a href="#cb108-2" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(y, <span class="at">ylab=</span><span class="st">"Sepal Length (cm)"</span>, <span class="at">main=</span><span class="st">"A Boring Boxplot"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-
-</div>
-<img data-src="Intro2R_files/figure-revealjs/unnamed-chunk-64-1.png" width="960" class="r-stretch"></section>
-<section id="boxplot-by-group" class="slide level2">
-<h2>Boxplot by group</h2>
-<p>But we can also use the <code>~</code> character to easily split a boxplot by group.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb109"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb109-1"><a href="#cb109-1" aria-hidden="true" tabindex="-1"></a>y <span class="ot">=</span> iris<span class="sc">$</span>Sepal.Length <span class="co"># A built in dataset</span></span>
-<span id="cb109-2"><a href="#cb109-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">=</span> iris<span class="sc">$</span>Species      <span class="co"># A "factor" data type   </span></span>
-<span id="cb109-3"><a href="#cb109-3" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(y<span class="sc">~</span>x, <span class="at">xlab=</span><span class="st">"Species"</span>, <span class="at">ylab=</span><span class="st">"Sepal Length (cm)"</span>, <span class="at">main=</span><span class="st">"An Interesting Boxplot"</span>,</span>
-<span id="cb109-4"><a href="#cb109-4" aria-hidden="true" tabindex="-1"></a>        <span class="at">col=</span><span class="fu">c</span>(<span class="st">"dodgerblue"</span>, <span class="st">"dodgerblue3"</span>, <span class="st">"dodgerblue4"</span>),</span>
-<span id="cb109-5"><a href="#cb109-5" aria-hidden="true" tabindex="-1"></a>        <span class="at">notch=</span><span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb117"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb117-1"><a href="#cb117-1" aria-hidden="true" tabindex="-1"></a>y <span class="ot">=</span> iris<span class="sc">$</span>Sepal.Length <span class="co"># A built in dataset</span></span>
+<span id="cb117-2"><a href="#cb117-2" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(y, <span class="at">ylab=</span><span class="st">"Sepal Length (cm)"</span>, <span class="at">main=</span><span class="st">"A Boring Boxplot"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
 <img data-src="Intro2R_files/figure-revealjs/unnamed-chunk-65-1.png" width="960" class="r-stretch"></section>
-<section id="section-1" class="slide level2">
-<h2></h2>
-</section>
+<section id="boxplot-by-group" class="slide level2 smaller">
+<h2>Boxplot by group</h2>
+<p>But we can also use the <code>~</code> character to easily split a boxplot by group.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb118"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb118-1"><a href="#cb118-1" aria-hidden="true" tabindex="-1"></a>y <span class="ot">=</span> iris<span class="sc">$</span>Sepal.Length <span class="co"># A built in dataset</span></span>
+<span id="cb118-2"><a href="#cb118-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">=</span> iris<span class="sc">$</span>Species      <span class="co"># A "factor" data type   </span></span>
+<span id="cb118-3"><a href="#cb118-3" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(y<span class="sc">~</span>x, <span class="at">xlab=</span><span class="st">"Species"</span>, <span class="at">ylab=</span><span class="st">"Sepal Length (cm)"</span>, <span class="at">main=</span><span class="st">"An Interesting Boxplot"</span>,</span>
+<span id="cb118-4"><a href="#cb118-4" aria-hidden="true" tabindex="-1"></a>        <span class="at">col=</span><span class="fu">c</span>(<span class="st">"dodgerblue"</span>, <span class="st">"dodgerblue3"</span>, <span class="st">"dodgerblue4"</span>),</span>
+<span id="cb118-5"><a href="#cb118-5" aria-hidden="true" tabindex="-1"></a>        <span class="at">notch=</span><span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+</div>
+<img data-src="Intro2R_files/figure-revealjs/unnamed-chunk-66-1.png" width="960" class="r-stretch"></section>
 <section id="ggplot-vs-base-r" class="slide level2">
 <h2>ggplot vs Base R</h2>
 <p>Check out <a href="https://r4ds.hadley.nz/visualize">this chapter</a> from the R for Data Science book to learn more.</p>
@@ -1598,52 +1642,52 @@ Treatment          79.3</code></pre>
 <section id="assignment-3-solution" class="slide level2">
 <h2>Assignment 3 (Solution)</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb110"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb110-1"><a href="#cb110-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. Make a scatterplot of patient age vs. baseline SBP.</span></span>
-<span id="cb110-2"><a href="#cb110-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(data<span class="sc">$</span>Age, data<span class="sc">$</span><span class="st">`</span><span class="at">Baseline SBP</span><span class="st">`</span>,</span>
-<span id="cb110-3"><a href="#cb110-3" aria-hidden="true" tabindex="-1"></a>     <span class="at">main=</span><span class="st">"Patient Age vs Baseline Systolic Blood Pressure"</span>,</span>
-<span id="cb110-4"><a href="#cb110-4" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab=</span><span class="st">"Age (years)"</span>, <span class="at">ylab=</span><span class="st">"Systolic Blood Pressure (mm Hg)"</span>,</span>
-<span id="cb110-5"><a href="#cb110-5" aria-hidden="true" tabindex="-1"></a>     <span class="at">pch=</span><span class="dv">21</span>, <span class="at">bg=</span><span class="st">"dodgerblue"</span>, <span class="at">lwd=</span><span class="dv">2</span>, <span class="at">cex=</span><span class="fl">1.2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-
-</div>
-<img data-src="Intro2R_files/figure-revealjs/unnamed-chunk-66-1.png" width="960" class="r-stretch"></section>
-<section id="assignment-3-solution-1" class="slide level2">
-<h2>Assignment 3 (Solution)</h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb111"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb111-1"><a href="#cb111-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 3. Add linear regression line</span></span>
-<span id="cb111-2"><a href="#cb111-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(data<span class="sc">$</span>Age, data<span class="sc">$</span><span class="st">`</span><span class="at">Baseline SBP</span><span class="st">`</span>,</span>
-<span id="cb111-3"><a href="#cb111-3" aria-hidden="true" tabindex="-1"></a>     <span class="at">main=</span><span class="st">"Patient Age vs Baseline Systolic Blood Pressure"</span>,</span>
-<span id="cb111-4"><a href="#cb111-4" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab=</span><span class="st">"Age (years)"</span>, <span class="at">ylab=</span><span class="st">"Systolic Blood Pressure (mm Hg)"</span>,</span>
-<span id="cb111-5"><a href="#cb111-5" aria-hidden="true" tabindex="-1"></a>     <span class="at">pch=</span><span class="dv">21</span>, <span class="at">bg=</span><span class="st">"dodgerblue"</span>, <span class="at">lwd=</span><span class="dv">2</span>, <span class="at">cex=</span><span class="fl">1.2</span>)</span>
-<span id="cb111-6"><a href="#cb111-6" aria-hidden="true" tabindex="-1"></a>fit <span class="ot">=</span> <span class="fu">lm</span>(data<span class="sc">$</span><span class="st">`</span><span class="at">Baseline SBP</span><span class="st">`</span><span class="sc">~</span>data<span class="sc">$</span>Age)</span>
-<span id="cb111-7"><a href="#cb111-7" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(fit, <span class="at">lwd=</span><span class="dv">2</span>, <span class="at">lty=</span><span class="dv">2</span>, <span class="at">col=</span><span class="st">"orange"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb119"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb119-1"><a href="#cb119-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. Make a scatterplot of patient age vs. baseline SBP.</span></span>
+<span id="cb119-2"><a href="#cb119-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(data<span class="sc">$</span>Age, data<span class="sc">$</span><span class="st">`</span><span class="at">Baseline SBP</span><span class="st">`</span>,</span>
+<span id="cb119-3"><a href="#cb119-3" aria-hidden="true" tabindex="-1"></a>     <span class="at">main=</span><span class="st">"Patient Age vs Baseline Systolic Blood Pressure"</span>,</span>
+<span id="cb119-4"><a href="#cb119-4" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab=</span><span class="st">"Age (years)"</span>, <span class="at">ylab=</span><span class="st">"Systolic Blood Pressure (mm Hg)"</span>,</span>
+<span id="cb119-5"><a href="#cb119-5" aria-hidden="true" tabindex="-1"></a>     <span class="at">pch=</span><span class="dv">21</span>, <span class="at">bg=</span><span class="st">"dodgerblue"</span>, <span class="at">lwd=</span><span class="dv">2</span>, <span class="at">cex=</span><span class="fl">1.2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
 <img data-src="Intro2R_files/figure-revealjs/unnamed-chunk-67-1.png" width="960" class="r-stretch"></section>
-<section id="assignment-3-solution-2" class="slide level2">
+<section id="assignment-3-solution-1" class="slide level2">
 <h2>Assignment 3 (Solution)</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb112"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb112-1"><a href="#cb112-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 4. Add grid()</span></span>
-<span id="cb112-2"><a href="#cb112-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(data<span class="sc">$</span>Age, data<span class="sc">$</span><span class="st">`</span><span class="at">Baseline SBP</span><span class="st">`</span>,</span>
-<span id="cb112-3"><a href="#cb112-3" aria-hidden="true" tabindex="-1"></a>     <span class="at">main=</span><span class="st">"Patient Age vs Baseline Systolic Blood Pressure"</span>,</span>
-<span id="cb112-4"><a href="#cb112-4" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab=</span><span class="st">"Age (years)"</span>, <span class="at">ylab=</span><span class="st">"Systolic Blood Pressure (mm Hg)"</span>,</span>
-<span id="cb112-5"><a href="#cb112-5" aria-hidden="true" tabindex="-1"></a>     <span class="at">pch=</span><span class="dv">21</span>, <span class="at">bg=</span><span class="st">"dodgerblue"</span>, <span class="at">lwd=</span><span class="dv">2</span>, <span class="at">cex=</span><span class="fl">1.2</span>)</span>
-<span id="cb112-6"><a href="#cb112-6" aria-hidden="true" tabindex="-1"></a>fit <span class="ot">=</span> <span class="fu">lm</span>(data<span class="sc">$</span><span class="st">`</span><span class="at">Baseline SBP</span><span class="st">`</span><span class="sc">~</span>data<span class="sc">$</span>Age)</span>
-<span id="cb112-7"><a href="#cb112-7" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(fit, <span class="at">lwd=</span><span class="dv">2</span>, <span class="at">lty=</span><span class="dv">2</span>, <span class="at">col=</span><span class="st">"orange"</span>)</span>
-<span id="cb112-8"><a href="#cb112-8" aria-hidden="true" tabindex="-1"></a><span class="fu">grid</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb120"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb120-1"><a href="#cb120-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 3. Add linear regression line</span></span>
+<span id="cb120-2"><a href="#cb120-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(data<span class="sc">$</span>Age, data<span class="sc">$</span><span class="st">`</span><span class="at">Baseline SBP</span><span class="st">`</span>,</span>
+<span id="cb120-3"><a href="#cb120-3" aria-hidden="true" tabindex="-1"></a>     <span class="at">main=</span><span class="st">"Patient Age vs Baseline Systolic Blood Pressure"</span>,</span>
+<span id="cb120-4"><a href="#cb120-4" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab=</span><span class="st">"Age (years)"</span>, <span class="at">ylab=</span><span class="st">"Systolic Blood Pressure (mm Hg)"</span>,</span>
+<span id="cb120-5"><a href="#cb120-5" aria-hidden="true" tabindex="-1"></a>     <span class="at">pch=</span><span class="dv">21</span>, <span class="at">bg=</span><span class="st">"dodgerblue"</span>, <span class="at">lwd=</span><span class="dv">2</span>, <span class="at">cex=</span><span class="fl">1.2</span>)</span>
+<span id="cb120-6"><a href="#cb120-6" aria-hidden="true" tabindex="-1"></a>fit <span class="ot">=</span> <span class="fu">lm</span>(data<span class="sc">$</span><span class="st">`</span><span class="at">Baseline SBP</span><span class="st">`</span><span class="sc">~</span>data<span class="sc">$</span>Age)</span>
+<span id="cb120-7"><a href="#cb120-7" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(fit, <span class="at">lwd=</span><span class="dv">2</span>, <span class="at">lty=</span><span class="dv">2</span>, <span class="at">col=</span><span class="st">"orange"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
 <img data-src="Intro2R_files/figure-revealjs/unnamed-chunk-68-1.png" width="960" class="r-stretch"></section>
-<section id="assignment-3-solution-3" class="slide level2">
+<section id="assignment-3-solution-2" class="slide level2">
 <h2>Assignment 3 (Solution)</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb113"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb113-1"><a href="#cb113-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 5. boxplot</span></span>
-<span id="cb113-2"><a href="#cb113-2" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(data<span class="sc">$</span><span class="st">`</span><span class="at">SBP Decrease</span><span class="st">`</span><span class="sc">~</span>data<span class="sc">$</span>Treatment,</span>
-<span id="cb113-3"><a href="#cb113-3" aria-hidden="true" tabindex="-1"></a>        <span class="at">col=</span><span class="fu">c</span>(<span class="st">"grey80"</span>, <span class="st">"grey20"</span>),</span>
-<span id="cb113-4"><a href="#cb113-4" aria-hidden="true" tabindex="-1"></a>        <span class="at">xlab=</span><span class="st">"Treatment"</span>, <span class="at">ylab=</span><span class="st">"Decrease in SBP After Treatment"</span>)</span>
-<span id="cb113-5"><a href="#cb113-5" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">"topleft"</span>, <span class="fu">c</span>(<span class="st">"Control"</span>, <span class="st">"MedX"</span>), <span class="at">fill=</span><span class="fu">c</span>(<span class="st">"grey80"</span>, <span class="st">"grey20"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb121"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb121-1"><a href="#cb121-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 4. Add grid()</span></span>
+<span id="cb121-2"><a href="#cb121-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(data<span class="sc">$</span>Age, data<span class="sc">$</span><span class="st">`</span><span class="at">Baseline SBP</span><span class="st">`</span>,</span>
+<span id="cb121-3"><a href="#cb121-3" aria-hidden="true" tabindex="-1"></a>     <span class="at">main=</span><span class="st">"Patient Age vs Baseline Systolic Blood Pressure"</span>,</span>
+<span id="cb121-4"><a href="#cb121-4" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab=</span><span class="st">"Age (years)"</span>, <span class="at">ylab=</span><span class="st">"Systolic Blood Pressure (mm Hg)"</span>,</span>
+<span id="cb121-5"><a href="#cb121-5" aria-hidden="true" tabindex="-1"></a>     <span class="at">pch=</span><span class="dv">21</span>, <span class="at">bg=</span><span class="st">"dodgerblue"</span>, <span class="at">lwd=</span><span class="dv">2</span>, <span class="at">cex=</span><span class="fl">1.2</span>)</span>
+<span id="cb121-6"><a href="#cb121-6" aria-hidden="true" tabindex="-1"></a>fit <span class="ot">=</span> <span class="fu">lm</span>(data<span class="sc">$</span><span class="st">`</span><span class="at">Baseline SBP</span><span class="st">`</span><span class="sc">~</span>data<span class="sc">$</span>Age)</span>
+<span id="cb121-7"><a href="#cb121-7" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(fit, <span class="at">lwd=</span><span class="dv">2</span>, <span class="at">lty=</span><span class="dv">2</span>, <span class="at">col=</span><span class="st">"orange"</span>)</span>
+<span id="cb121-8"><a href="#cb121-8" aria-hidden="true" tabindex="-1"></a><span class="fu">grid</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
 <img data-src="Intro2R_files/figure-revealjs/unnamed-chunk-69-1.png" width="960" class="r-stretch"></section>
+<section id="assignment-3-solution-3" class="slide level2">
+<h2>Assignment 3 (Solution)</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb122"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb122-1"><a href="#cb122-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 5. boxplot</span></span>
+<span id="cb122-2"><a href="#cb122-2" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(data<span class="sc">$</span><span class="st">`</span><span class="at">SBP Decrease</span><span class="st">`</span><span class="sc">~</span>data<span class="sc">$</span>Treatment,</span>
+<span id="cb122-3"><a href="#cb122-3" aria-hidden="true" tabindex="-1"></a>        <span class="at">col=</span><span class="fu">c</span>(<span class="st">"grey80"</span>, <span class="st">"grey20"</span>),</span>
+<span id="cb122-4"><a href="#cb122-4" aria-hidden="true" tabindex="-1"></a>        <span class="at">xlab=</span><span class="st">"Treatment"</span>, <span class="at">ylab=</span><span class="st">"Decrease in SBP After Treatment"</span>)</span>
+<span id="cb122-5"><a href="#cb122-5" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">"topleft"</span>, <span class="fu">c</span>(<span class="st">"Control"</span>, <span class="st">"MedX"</span>), <span class="at">fill=</span><span class="fu">c</span>(<span class="st">"grey80"</span>, <span class="st">"grey20"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+</div>
+<img data-src="Intro2R_files/figure-revealjs/unnamed-chunk-70-1.png" width="960" class="r-stretch"></section>
 <section id="part-4-statistical-tests" class="slide level2">
 <h2>Part 4: Statistical Tests</h2>
 <p>R can handle any statistical test that you can think of!</p>
@@ -1676,9 +1720,9 @@ H_a:&amp;\ \mu &lt; 5.8
 \end{align*}
 \]</span></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb114"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb114-1"><a href="#cb114-1" aria-hidden="true" tabindex="-1"></a>setosa <span class="ot">=</span> <span class="fu">filter</span>(iris, Species<span class="sc">==</span><span class="st">"setosa"</span>)</span>
-<span id="cb114-2"><a href="#cb114-2" aria-hidden="true" tabindex="-1"></a>myvar <span class="ot">=</span> setosa<span class="sc">$</span>Sepal.Length</span>
-<span id="cb114-3"><a href="#cb114-3" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(myvar, <span class="at">mu=</span><span class="fl">5.8</span>, <span class="at">alternative=</span><span class="st">"less"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb123"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb123-1"><a href="#cb123-1" aria-hidden="true" tabindex="-1"></a>setosa <span class="ot">=</span> <span class="fu">filter</span>(iris, Species<span class="sc">==</span><span class="st">"setosa"</span>)</span>
+<span id="cb123-2"><a href="#cb123-2" aria-hidden="true" tabindex="-1"></a>myvar <span class="ot">=</span> setosa<span class="sc">$</span>Sepal.Length</span>
+<span id="cb123-3"><a href="#cb123-3" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(myvar, <span class="at">mu=</span><span class="fl">5.8</span>, <span class="at">alternative=</span><span class="st">"less"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
     One Sample t-test
@@ -1704,11 +1748,11 @@ H_a:&amp;\ \mu_v &gt; \mu_s
 \end{align*}
 \]</span></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb116"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb116-1"><a href="#cb116-1" aria-hidden="true" tabindex="-1"></a>setosa <span class="ot">=</span> <span class="fu">filter</span>(iris, Species<span class="sc">==</span><span class="st">"setosa"</span>)<span class="sc">$</span>Sepal.Length</span>
-<span id="cb116-2"><a href="#cb116-2" aria-hidden="true" tabindex="-1"></a>versic <span class="ot">=</span> <span class="fu">filter</span>(iris, Species<span class="sc">==</span><span class="st">"versicolor"</span>)<span class="sc">$</span>Sepal.Length</span>
-<span id="cb116-3"><a href="#cb116-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb116-4"><a href="#cb116-4" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(versic, setosa, <span class="at">alternative=</span><span class="st">"greater"</span>,</span>
-<span id="cb116-5"><a href="#cb116-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">paired=</span><span class="cn">FALSE</span>, <span class="at">var.equal=</span><span class="cn">FALSE</span>)          <span class="co"># Options for adjusting the type of test</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb125"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb125-1"><a href="#cb125-1" aria-hidden="true" tabindex="-1"></a>setosa <span class="ot">=</span> <span class="fu">filter</span>(iris, Species<span class="sc">==</span><span class="st">"setosa"</span>)<span class="sc">$</span>Sepal.Length</span>
+<span id="cb125-2"><a href="#cb125-2" aria-hidden="true" tabindex="-1"></a>versic <span class="ot">=</span> <span class="fu">filter</span>(iris, Species<span class="sc">==</span><span class="st">"versicolor"</span>)<span class="sc">$</span>Sepal.Length</span>
+<span id="cb125-3"><a href="#cb125-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb125-4"><a href="#cb125-4" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(versic, setosa, <span class="at">alternative=</span><span class="st">"greater"</span>,</span>
+<span id="cb125-5"><a href="#cb125-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">paired=</span><span class="cn">FALSE</span>, <span class="at">var.equal=</span><span class="cn">FALSE</span>)          <span class="co"># Options for adjusting the type of test</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
     Welch Two Sample t-test
@@ -1731,41 +1775,41 @@ mean of x mean of y
 <section id="multiple-comparisons-in-r" class="slide level2">
 <h2>Multiple Comparisons (in R)</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb118"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb118-1"><a href="#cb118-1" aria-hidden="true" tabindex="-1"></a>setosa <span class="ot">=</span> <span class="fu">filter</span>(iris, Species<span class="sc">==</span><span class="st">"setosa"</span>)<span class="sc">$</span>Sepal.Length</span>
-<span id="cb118-2"><a href="#cb118-2" aria-hidden="true" tabindex="-1"></a>versic <span class="ot">=</span> <span class="fu">filter</span>(iris, Species<span class="sc">==</span><span class="st">"versicolor"</span>)<span class="sc">$</span>Sepal.Length</span>
-<span id="cb118-3"><a href="#cb118-3" aria-hidden="true" tabindex="-1"></a>vrgnca <span class="ot">=</span> <span class="fu">filter</span>(iris, Species<span class="sc">==</span><span class="st">"virginica"</span>)<span class="sc">$</span>Sepal.Length</span>
-<span id="cb118-4"><a href="#cb118-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb118-5"><a href="#cb118-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Get p-values</span></span>
-<span id="cb118-6"><a href="#cb118-6" aria-hidden="true" tabindex="-1"></a>p_val <span class="ot">=</span> <span class="fu">rep</span>(<span class="cn">NA</span>, <span class="dv">3</span>)</span>
-<span id="cb118-7"><a href="#cb118-7" aria-hidden="true" tabindex="-1"></a>p_val[<span class="dv">1</span>] <span class="ot">=</span> <span class="fu">t.test</span>(setosa, versic, <span class="at">alternative =</span> <span class="st">"two.sided"</span>)<span class="sc">$</span>p.value</span>
-<span id="cb118-8"><a href="#cb118-8" aria-hidden="true" tabindex="-1"></a>p_val[<span class="dv">2</span>] <span class="ot">=</span> <span class="fu">t.test</span>(setosa, vrgnca, <span class="at">alternative =</span> <span class="st">"two.sided"</span>)<span class="sc">$</span>p.value</span>
-<span id="cb118-9"><a href="#cb118-9" aria-hidden="true" tabindex="-1"></a>p_val[<span class="dv">3</span>] <span class="ot">=</span> <span class="fu">t.test</span>(vrgnca, versic, <span class="at">alternative =</span> <span class="st">"two.sided"</span>)<span class="sc">$</span>p.value</span>
-<span id="cb118-10"><a href="#cb118-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb118-11"><a href="#cb118-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Adjust p-values</span></span>
-<span id="cb118-12"><a href="#cb118-12" aria-hidden="true" tabindex="-1"></a><span class="fu">p.adjust</span>(p_val, <span class="at">method=</span><span class="st">"bonferroni"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb127"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb127-1"><a href="#cb127-1" aria-hidden="true" tabindex="-1"></a>setosa <span class="ot">=</span> <span class="fu">filter</span>(iris, Species<span class="sc">==</span><span class="st">"setosa"</span>)<span class="sc">$</span>Sepal.Length</span>
+<span id="cb127-2"><a href="#cb127-2" aria-hidden="true" tabindex="-1"></a>versic <span class="ot">=</span> <span class="fu">filter</span>(iris, Species<span class="sc">==</span><span class="st">"versicolor"</span>)<span class="sc">$</span>Sepal.Length</span>
+<span id="cb127-3"><a href="#cb127-3" aria-hidden="true" tabindex="-1"></a>vrgnca <span class="ot">=</span> <span class="fu">filter</span>(iris, Species<span class="sc">==</span><span class="st">"virginica"</span>)<span class="sc">$</span>Sepal.Length</span>
+<span id="cb127-4"><a href="#cb127-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb127-5"><a href="#cb127-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Get p-values</span></span>
+<span id="cb127-6"><a href="#cb127-6" aria-hidden="true" tabindex="-1"></a>p_val <span class="ot">=</span> <span class="fu">rep</span>(<span class="cn">NA</span>, <span class="dv">3</span>)</span>
+<span id="cb127-7"><a href="#cb127-7" aria-hidden="true" tabindex="-1"></a>p_val[<span class="dv">1</span>] <span class="ot">=</span> <span class="fu">t.test</span>(setosa, versic, <span class="at">alternative =</span> <span class="st">"two.sided"</span>)<span class="sc">$</span>p.value</span>
+<span id="cb127-8"><a href="#cb127-8" aria-hidden="true" tabindex="-1"></a>p_val[<span class="dv">2</span>] <span class="ot">=</span> <span class="fu">t.test</span>(setosa, vrgnca, <span class="at">alternative =</span> <span class="st">"two.sided"</span>)<span class="sc">$</span>p.value</span>
+<span id="cb127-9"><a href="#cb127-9" aria-hidden="true" tabindex="-1"></a>p_val[<span class="dv">3</span>] <span class="ot">=</span> <span class="fu">t.test</span>(vrgnca, versic, <span class="at">alternative =</span> <span class="st">"two.sided"</span>)<span class="sc">$</span>p.value</span>
+<span id="cb127-10"><a href="#cb127-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb127-11"><a href="#cb127-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Adjust p-values</span></span>
+<span id="cb127-12"><a href="#cb127-12" aria-hidden="true" tabindex="-1"></a><span class="fu">p.adjust</span>(p_val, <span class="at">method=</span><span class="st">"bonferroni"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 1.124023e-16 1.190060e-24 5.598433e-07</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb120"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb120-1"><a href="#cb120-1" aria-hidden="true" tabindex="-1"></a><span class="fu">p.adjust</span>(p_val, <span class="at">method=</span><span class="st">"holm"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb129"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb129-1"><a href="#cb129-1" aria-hidden="true" tabindex="-1"></a><span class="fu">p.adjust</span>(p_val, <span class="at">method=</span><span class="st">"holm"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 7.493485e-17 1.190060e-24 1.866144e-07</code></pre>
 </div>
 </div>
 </section>
-<section id="testing-categorical-variables" class="slide level2">
+<section id="testing-categorical-variables" class="slide level2 smaller">
 <h2>Testing Categorical Variables</h2>
 <p>Let’s make a new variable which is <code>TRUE</code> if the Sepal Length is more than twice as long as the Sepal Width.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb122"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb122-1"><a href="#cb122-1" aria-hidden="true" tabindex="-1"></a>my_iris <span class="ot">=</span> <span class="fu">mutate</span>(iris, <span class="st">`</span><span class="at">Sepal Long</span><span class="st">`</span> <span class="ot">=</span> (Sepal.Length <span class="sc">&gt;</span> <span class="dv">2</span><span class="sc">*</span>Sepal.Width))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb131"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb131-1"><a href="#cb131-1" aria-hidden="true" tabindex="-1"></a>my_iris <span class="ot">=</span> <span class="fu">mutate</span>(iris, <span class="st">`</span><span class="at">Sepal Long</span><span class="st">`</span> <span class="ot">=</span> (Sepal.Length <span class="sc">&gt;</span> <span class="dv">2</span><span class="sc">*</span>Sepal.Width))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>and another variable for whether or not the species is <em>Setosa</em>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb123"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb123-1"><a href="#cb123-1" aria-hidden="true" tabindex="-1"></a>my_iris <span class="ot">=</span> <span class="fu">mutate</span>(my_iris, <span class="at">Setosa =</span> (Species <span class="sc">==</span> <span class="st">"setosa"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb132"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb132-1"><a href="#cb132-1" aria-hidden="true" tabindex="-1"></a>my_iris <span class="ot">=</span> <span class="fu">mutate</span>(my_iris, <span class="at">Setosa =</span> (Species <span class="sc">==</span> <span class="st">"setosa"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Now make a table of these values.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb124"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb124-1"><a href="#cb124-1" aria-hidden="true" tabindex="-1"></a>tab <span class="ot">=</span> <span class="fu">table</span>(my_iris<span class="sc">$</span>Setosa, my_iris<span class="sc">$</span><span class="st">`</span><span class="at">Sepal Long</span><span class="st">`</span>)</span>
-<span id="cb124-2"><a href="#cb124-2" aria-hidden="true" tabindex="-1"></a>tab</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb133"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb133-1"><a href="#cb133-1" aria-hidden="true" tabindex="-1"></a>tab <span class="ot">=</span> <span class="fu">table</span>(my_iris<span class="sc">$</span>Setosa, my_iris<span class="sc">$</span><span class="st">`</span><span class="at">Sepal Long</span><span class="st">`</span>)</span>
+<span id="cb133-2"><a href="#cb133-2" aria-hidden="true" tabindex="-1"></a>tab</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>       
         FALSE TRUE
@@ -1778,7 +1822,7 @@ mean of x mean of y
 <h2>Testing Categorical Variables</h2>
 <p>Use Chi Square test</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb126"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb126-1"><a href="#cb126-1" aria-hidden="true" tabindex="-1"></a><span class="fu">chisq.test</span>(tab)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb135"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb135-1"><a href="#cb135-1" aria-hidden="true" tabindex="-1"></a><span class="fu">chisq.test</span>(tab)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
     Pearson's Chi-squared test with Yates' continuity correction
@@ -1793,7 +1837,7 @@ X-squared = 80.312, df = 1, p-value &lt; 2.2e-16</code></pre>
 <p>The Chi Square test is incredibly useful, but it’s an <strong>approximation!</strong></p>
 <p>For <span class="math inline">\(2\times 2\)</span> tables, we can use Fisher’s exact test instead.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb128"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb128-1"><a href="#cb128-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fisher.test</span>(tab)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb137"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb137-1"><a href="#cb137-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fisher.test</span>(tab)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
     Fisher's Exact Test for Count Data
@@ -1809,12 +1853,19 @@ odds ratio
 </div>
 </div>
 </section>
-<section id="chi-square-test" class="slide level2">
+<section id="chi-square-test" class="slide level2 smaller">
 <h2>Chi-Square test</h2>
 <p>But Chi-square is more flexible and works for “tables” of any size.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb130"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb130-1"><a href="#cb130-1" aria-hidden="true" tabindex="-1"></a>tab2 <span class="ot">=</span> <span class="fu">table</span>(my_iris<span class="sc">$</span><span class="st">`</span><span class="at">Sepal Long</span><span class="st">`</span>, my_iris<span class="sc">$</span>Species)</span>
-<span id="cb130-2"><a href="#cb130-2" aria-hidden="true" tabindex="-1"></a><span class="fu">chisq.test</span>(tab2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb139"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb139-1"><a href="#cb139-1" aria-hidden="true" tabindex="-1"></a>tab2 <span class="ot">=</span> <span class="fu">table</span>(my_iris<span class="sc">$</span><span class="st">`</span><span class="at">Sepal Long</span><span class="st">`</span>, my_iris<span class="sc">$</span>Species)</span>
+<span id="cb139-2"><a href="#cb139-2" aria-hidden="true" tabindex="-1"></a>tab2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>       
+        setosa versicolor virginica
+  FALSE     50         12         9
+  TRUE       0         38        41</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb141"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb141-1"><a href="#cb141-1" aria-hidden="true" tabindex="-1"></a><span class="fu">chisq.test</span>(tab2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
     Pearson's Chi-squared test
@@ -1835,8 +1886,8 @@ X-squared = 83.812, df = 2, p-value &lt; 2.2e-16</code></pre>
 <section id="assignment-4-solution" class="slide level2">
 <h2>Assignment 4 (Solution)</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb132"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb132-1"><a href="#cb132-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. one-sample t test</span></span>
-<span id="cb132-2"><a href="#cb132-2" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(data<span class="sc">$</span><span class="st">`</span><span class="at">Baseline SBP</span><span class="st">`</span>, <span class="at">mu=</span><span class="dv">129</span>, <span class="at">alternative=</span><span class="st">"greater"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb143"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb143-1"><a href="#cb143-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. one-sample t test</span></span>
+<span id="cb143-2"><a href="#cb143-2" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(data<span class="sc">$</span><span class="st">`</span><span class="at">Baseline SBP</span><span class="st">`</span>, <span class="at">mu=</span><span class="dv">129</span>, <span class="at">alternative=</span><span class="st">"greater"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
     One Sample t-test
@@ -1855,14 +1906,14 @@ mean of x
 <section id="assignment-4-solution-1" class="slide level2">
 <h2>Assignment 4 (Solution)</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb134"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb134-1"><a href="#cb134-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. two-sample t test</span></span>
-<span id="cb134-2"><a href="#cb134-2" aria-hidden="true" tabindex="-1"></a>d1 <span class="ot">=</span> <span class="fu">filter</span>(data, Treatment <span class="sc">==</span> <span class="st">"Control"</span>)</span>
-<span id="cb134-3"><a href="#cb134-3" aria-hidden="true" tabindex="-1"></a>x1 <span class="ot">=</span> d1<span class="sc">$</span><span class="st">`</span><span class="at">Baseline SBP</span><span class="st">`</span></span>
-<span id="cb134-4"><a href="#cb134-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb134-5"><a href="#cb134-5" aria-hidden="true" tabindex="-1"></a>d2 <span class="ot">=</span> <span class="fu">filter</span>(data, Treatment <span class="sc">==</span> <span class="st">"Medication X"</span>)</span>
-<span id="cb134-6"><a href="#cb134-6" aria-hidden="true" tabindex="-1"></a>x2 <span class="ot">=</span> d2<span class="sc">$</span><span class="st">`</span><span class="at">Baseline SBP</span><span class="st">`</span></span>
-<span id="cb134-7"><a href="#cb134-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb134-8"><a href="#cb134-8" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(x1, x2, <span class="at">mu=</span><span class="dv">129</span>, <span class="at">alternative=</span><span class="st">"greater"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb145"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb145-1"><a href="#cb145-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. two-sample t test</span></span>
+<span id="cb145-2"><a href="#cb145-2" aria-hidden="true" tabindex="-1"></a>d1 <span class="ot">=</span> <span class="fu">filter</span>(data, Treatment <span class="sc">==</span> <span class="st">"Control"</span>)</span>
+<span id="cb145-3"><a href="#cb145-3" aria-hidden="true" tabindex="-1"></a>x1 <span class="ot">=</span> d1<span class="sc">$</span><span class="st">`</span><span class="at">Baseline SBP</span><span class="st">`</span></span>
+<span id="cb145-4"><a href="#cb145-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb145-5"><a href="#cb145-5" aria-hidden="true" tabindex="-1"></a>d2 <span class="ot">=</span> <span class="fu">filter</span>(data, Treatment <span class="sc">==</span> <span class="st">"Medication X"</span>)</span>
+<span id="cb145-6"><a href="#cb145-6" aria-hidden="true" tabindex="-1"></a>x2 <span class="ot">=</span> d2<span class="sc">$</span><span class="st">`</span><span class="at">Baseline SBP</span><span class="st">`</span></span>
+<span id="cb145-7"><a href="#cb145-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb145-8"><a href="#cb145-8" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(x1, x2, <span class="at">mu=</span><span class="dv">129</span>, <span class="at">alternative=</span><span class="st">"greater"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
     Welch Two Sample t-test
@@ -1881,9 +1932,9 @@ mean of x mean of y
 <section id="assignment-4-solution-2" class="slide level2">
 <h2>Assignment 4 (Solution)</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb136"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb136-1"><a href="#cb136-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 3. chi-square test</span></span>
-<span id="cb136-2"><a href="#cb136-2" aria-hidden="true" tabindex="-1"></a>tab <span class="ot">=</span> <span class="fu">table</span>(data<span class="sc">$</span>Treatment, data<span class="sc">$</span>Headache)</span>
-<span id="cb136-3"><a href="#cb136-3" aria-hidden="true" tabindex="-1"></a><span class="fu">chisq.test</span>(tab)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb147"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb147-1"><a href="#cb147-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 3. chi-square test</span></span>
+<span id="cb147-2"><a href="#cb147-2" aria-hidden="true" tabindex="-1"></a>tab <span class="ot">=</span> <span class="fu">table</span>(data<span class="sc">$</span>Treatment, data<span class="sc">$</span>Headache)</span>
+<span id="cb147-3"><a href="#cb147-3" aria-hidden="true" tabindex="-1"></a><span class="fu">chisq.test</span>(tab)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
     Pearson's Chi-squared test with Yates' continuity correction
@@ -1891,7 +1942,7 @@ mean of x mean of y
 data:  tab
 X-squared = 0.52288, df = 1, p-value = 0.4696</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb138"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb138-1"><a href="#cb138-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fisher.test</span>(tab)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb149"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb149-1"><a href="#cb149-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fisher.test</span>(tab)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
     Fisher's Exact Test for Count Data
@@ -1906,6 +1957,9 @@ odds ratio
   2.220255 </code></pre>
 </div>
 </div>
+</section>
+<section id="thanks-for-coming-by" class="slide level2">
+<h2>Thanks for coming by!</h2>
 <div class="footer footer-default">
 
 </div>

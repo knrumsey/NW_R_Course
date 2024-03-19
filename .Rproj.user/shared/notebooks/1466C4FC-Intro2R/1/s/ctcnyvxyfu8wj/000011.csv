@@ -1,2 +1,0 @@
-"0","fit = lm(data$`Baseline SBP`~data$Age)"
-"0","abline(fit, lwd=2, lty=2, col=""orange"")"

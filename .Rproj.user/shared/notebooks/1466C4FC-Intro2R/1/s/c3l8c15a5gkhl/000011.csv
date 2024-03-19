@@ -1,4 +1,0 @@
-"0","ggplot(data = data, aes(x = Age)) +"
-"0","  geom_histogram(aes(y = ..density..), bins = 20, fill = ""skyblue"", color = ""black"") +"
-"0","  stat_function(fun = dnorm, args = list(mean = mean(Age), sd = sd(Age)), color = ""red"", size = 1) +"
-"0","  labs(x = ""Value"", y = ""Density"", title = ""Histogram of Patient Age"")"

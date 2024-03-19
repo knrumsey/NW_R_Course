@@ -1,4 +1,0 @@
-"0","ggplot(data, aes(x = Treatment, y = `SBP Decrease`, fill = Treatment)) +"
-"0","  geom_boxplot(notch = TRUE, notchwidth = 0.5) + # Add notches"
-"0","  scale_fill_manual(values = c(""dodgerblue"", ""orange"")) +"
-"0","  labs(x = ""Treatment"", y = ""Decrease in SBP After Treatment"")"

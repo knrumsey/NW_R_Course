@@ -1,5 +1,0 @@
-"0","# 3. Make a scatterplot of patient age vs. baseline SBP."
-"0","plot(data$Age, data$`Baseline SBP`,"
-"0","     main=""Patient Age vs Baseline Systolic Blood Pressure"","
-"0","     xlab=""Age (years)"", ylab=""Systolic Blood Pressure (mm Hg)"","
-"0","     pch=21, bg=""dodgerblue"", lwd=2, cex=1.2)"

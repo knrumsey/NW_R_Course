@@ -1,5 +1,5 @@
 ---
-title: "Introduction to R"
+title: "Getting Started with Data Analysis in R"
 author: "Kellin Rumsey"
 format: revealjs
 code-line-numbers: false
@@ -9,9 +9,17 @@ editor: visual
 
 ## Introduction
 
-Hi I'm Kellin.
-
 You can find these slides at `https://github.com/knrumsey/NW_R_Course`
+
+&nbsp;
+
+&nbsp;
+
+Open the file `Intro2R.html`.
+
+&nbsp;
+
+Right click and select *Open in New Tab*.
 
 ## Goals for the Next Hour
 
@@ -58,7 +66,7 @@ You can find these slides at `https://github.com/knrumsey/NW_R_Course`
 
 ![](figs/rstudio-panes-labeled.jpeg)
 
-## R packages
+## R packages  {.smaller}
 
 R has a lot of useful functions that are shipped with the *base* version. But sometimes we need functionality not included by *base R*.
 
@@ -96,9 +104,7 @@ data = read.csv("mydata.csv")
 data = read_csv("mydata.csv")
 ```
 
-## 
-
-## R Resources
+## R Resources  {.smaller}
 
 For learning R on your own.
 
@@ -343,7 +349,7 @@ zebra
 
 -   Must begin with a letter
 
--   Can contain letters, numbers, and the symbol `_` (also `., but avoid this).`
+-   Can contain letters, numbers, and the symbol `_` (also `.`)
 
 -   Variable names cannot include spaces or special characters.
 
@@ -491,7 +497,7 @@ foo[-2]        # Get all values EXCEPT the 2nd
 A vector is a ordered collection of variables.
 
 ```{r, echo=TRUE, eval=FALSE}
-#| code-line-numbers: "10-13"
+#| code-line-numbers: "11-14"
 # Define some vectors
 foo = c(1, 2, 3, 5, 7, 11)
 foo
@@ -571,7 +577,7 @@ print(z)
 
     -   Click on a particular line and type `cntrl + enter` (or `command+return` on mac)
 
-## Assignment 1 
+## Assignment 1  {.smaller}
 
 1.  Make a new folder somewhere in your computer and give it a good name.
 2.  Create a new R Project. `File -> New Project -> Existing Directory` and choose the new (outer folder) you made.
@@ -579,7 +585,7 @@ print(z)
 4.  Use the following code to extract the age column from our hypothetical dataset.
 
 ```{r, eval = TRUE}
-data = read_csv("data/HypotheticalData1.csv")
+data = read_csv("https://raw.githubusercontent.com/knrumsey/NW_R_Course/main/data/HypotheticalData1.csv")
 age = data$Age
 ```
 
@@ -603,7 +609,7 @@ s # standard deviation of patient age
 l # number of patients in the dataset
 ```
 
-## Assignment 1 
+## Assignment 1
 
 ```{r}
 # 6. What is the age of the $50^{th}$ patient? Save this in a new variable.
@@ -611,7 +617,7 @@ x = age[50]
 x
 ```
 
-## Assignment 1 
+## Assignment 1
 
 ```{r}
 # 7. Calculate the "z-score" corresponding to this patients age. 
@@ -626,7 +632,7 @@ sbp_before = data$`Baseline SBP`
 cor(age, sbp_before)
 ```
 
-## Part 2: Data Frames and Tibbles 
+## Part 2: Data Frames and Tibbles
 
 A **Data Frame** is an object in R that behaves essentially like a spreadsheet.
 
@@ -848,7 +854,7 @@ data = mutate(data, AgeMonths = 12 * Age)
 data = select(data, !AgeMonths)
 ```
 
-## Other Useful Functions  {.smaller}
+## Other Useful Functions {.smaller}
 
 See the [dplyr documentation](https://dplyr.tidyverse.org) for details (or search online, or ask chatGPT, or use the R help files with `?`).
 
@@ -866,7 +872,7 @@ See the [dplyr documentation](https://dplyr.tidyverse.org) for details (or searc
 
 7.  **`slice()`**: Extract specific rows from a data frame.
 
-## Assignment 2  {.smaller}
+## Assignment 2 {.smaller}
 
 1.  Make two new folders inside your main project directory called `data` and `R`. Save your R script inside the R folder.
 2.  Save ("write") your data frame object as a csv inside the data folder. Feel free to open it in excel if you want.
@@ -918,7 +924,7 @@ mean(data_control$`SBP Decrease`)
 mean(data_medX$`SBP Decrease`)
 ```
 
-## Part 3: Plotting with R
+## Part 3: Plotting with R  {.smaller}
 
 There are lots of options for plotting with base R.
 
@@ -955,7 +961,7 @@ plot(x, y,
      sub="A subitle - alsjdka")
 ```
 
-## Customize the look of the figure
+## Customize the look of the figure  {.smaller}
 
 -   `pch` - [Plotting symbols](http://www.sthda.com/english/wiki/r-plot-pch-symbols-the-different-point-shapes-available-in-r) (a number from 0 to 25)
 
@@ -973,7 +979,7 @@ plot(x, y,
 plot(x, y, pch=15, col="burlywood4", type='o', lwd=2, lty=3)
 ```
 
-## Adding layers to figure
+## Adding layers to figure  {.smaller}
 
 -   `points(x, y)` - add points to current figure
 
@@ -1008,7 +1014,7 @@ legend("topleft", legend=c("this is data"), pch=16, col="mediumvioletred", bty="
 dev.off()
 ```
 
-## Other Plotting Functions  {.smaller}
+## Other Plotting Functions {.smaller}
 
 Other figures work similarly. You can see additional arguments typing `?` before the function name in the console.
 
@@ -1026,7 +1032,7 @@ d = density(cheese_consumption)
 polygon(d, lwd=2, border="dodgerblue")
 ```
 
-## Statistics Teaching Moment (QQPlots)  {.smaller}
+## Statistics Teaching Moment (QQPlots) {.smaller}
 
 There are many highly specialized functions in R.
 
@@ -1044,7 +1050,7 @@ qqnorm(cheese_consumption)
 qqline(cheese_consumption)
 ```
 
-## Statistics Teaching Moment (QQPlots)  {.smaller}
+## Statistics Teaching Moment (QQPlots) {.smaller}
 
 Let's install a separate package so we can look at QQ Plots more closely.
 
@@ -1063,7 +1069,7 @@ y = iris$Sepal.Length # A built in dataset
 boxplot(y, ylab="Sepal Length (cm)", main="A Boring Boxplot")
 ```
 
-## Boxplot by group
+## Boxplot by group  {.smaller}
 
 But we can also use the `~` character to easily split a boxplot by group.
 
@@ -1075,15 +1081,13 @@ boxplot(y~x, xlab="Species", ylab="Sepal Length (cm)", main="An Interesting Boxp
         notch=TRUE)
 ```
 
-## 
-
 ## ggplot vs Base R
 
 Check out [this chapter](https://r4ds.hadley.nz/visualize) from the R for Data Science book to learn more.
 
 ![](figs/ggplot_comp.png)
 
-## Assignment 3 - Plotting  {.smaller}
+## Assignment 3 - Plotting {.smaller}
 
 1.  Make a new folder inside your project directory called `figs`. Save your images here.
 2.  Make a scatterplot of patient age vs. baseline SBP. Use arguments to add a title and axis labels. Change the aesthetics of the plot a bit.
@@ -1163,7 +1167,7 @@ $$
 
 We have to use a bunch of formulas that you probably don't remember and a table that was made in the 1908...
 
-## One-sample T-test   {.smaller}
+## One-sample T-test {.smaller}
 
 For Iris flowers of the *Setosa* species, we hypothesize that the mean sepal length is *less than* $5.8$ cm.
 
@@ -1180,7 +1184,7 @@ myvar = setosa$Sepal.Length
 t.test(myvar, mu=5.8, alternative="less")
 ```
 
-## Two-sample T-test   {.smaller}
+## Two-sample T-test {.smaller}
 
 Now assume that we want to compare two species: We hypothesize that *Versicolor* has a longer average sepal length than the *Setosa* species.
 
@@ -1199,7 +1203,7 @@ t.test(versic, setosa, alternative="greater",
        paired=FALSE, var.equal=FALSE)          # Options for adjusting the type of test
 ```
 
-## Multiple Comparisons   {.smaller}
+## Multiple Comparisons {.smaller}
 
 ![](figs/jellybean.png)
 
@@ -1221,7 +1225,7 @@ p.adjust(p_val, method="bonferroni")
 p.adjust(p_val, method="holm")
 ```
 
-## Testing Categorical Variables
+## Testing Categorical Variables  {.smaller}
 
 Let's make a new variable which is `TRUE` if the Sepal Length is more than twice as long as the Sepal Width.
 
@@ -1260,12 +1264,13 @@ For $2\times 2$ tables, we can use Fisher's exact test instead.
 fisher.test(tab)
 ```
 
-## Chi-Square test
+## Chi-Square test  {.smaller}
 
 But Chi-square is more flexible and works for "tables" of any size.
 
 ```{r, warning=TRUE}
 tab2 = table(my_iris$`Sepal Long`, my_iris$Species)
+tab2
 chisq.test(tab2)
 ```
 
@@ -1303,3 +1308,5 @@ tab = table(data$Treatment, data$Headache)
 chisq.test(tab)
 fisher.test(tab)
 ```
+
+## Thanks for coming by!

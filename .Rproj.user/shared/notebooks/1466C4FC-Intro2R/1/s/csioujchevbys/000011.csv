@@ -1,2 +1,0 @@
-"0","y = iris$Sepal.Length # A built in dataset"
-"0","boxplot(y, ylab=""Sepal Length (cm)"", main=""A Boring Boxplot"")"

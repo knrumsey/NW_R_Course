@@ -1,5 +1,0 @@
-"0","y = iris$Sepal.Length # A built in dataset"
-"0","x = iris$Species      # A ""factor"" data type   "
-"0","boxplot(y~x, xlab=""Species"", ylab=""Sepal Length (cm)"", main=""An Interesting Boxplot"","
-"0","        col=c(""dodgerblue"", ""dodgerblue3"", ""dodgerblue4""),"
-"0","        notch=TRUE)"
