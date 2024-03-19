@@ -1,0 +1,61 @@
+Patient ID,Age,Treatment,Baseline SBP,Post Treatment SBP,Headache
+1,45,Control,130.8,131.9,No
+2,43,Control,129.3,126.2,No
+3,44,Control,131.6,135.5,No
+4,46,Control,129.2,134,No
+5,49,Control,135.6,137.4,No
+6,41,Control,127.1,128.3,No
+7,41,Control,124.1,119.6,No
+8,51,Control,130.1,131.3,Yes
+9,48,Control,130.1,133.6,No
+10,45,Control,126.1,127.3,No
+11,34,Control,130.2,129.8,No
+12,51,Control,132.7,129.1,No
+13,44,Control,130.8,131.4,No
+14,39,Control,129.4,128.2,No
+15,36,Control,126,124.3,No
+16,48,Control,133.5,128.6,Yes
+17,46,Control,132.7,131.8,No
+18,50,Control,133.6,135,No
+19,45,Control,126.6,131.7,No
+20,44,Control,128.1,127.5,No
+21,51,Control,132.6,132,No
+22,49,Control,132.4,128.9,No
+23,47,Control,130.7,130.8,No
+24,50,Control,131.6,133.8,Yes
+25,54,Control,133.4,133.5,No
+26,49,Control,134.2,132.7,No
+27,42,Control,127.1,124,No
+28,41,Control,125.6,130.5,No
+29,45,Control,129.5,127.9,No
+30,46,Control,129.3,132.6,No
+31,50,Medication X,131.1,124.2,No
+32,53,Medication X,136.2,130.6,No
+33,58,Medication X,135.3,131.1,No
+34,40,Medication X,128.2,124.8,No
+35,49,Medication X,133.2,128.1,No
+36,43,Medication X,129.1,124,No
+37,50,Medication X,132.1,120.4,No
+38,40,Medication X,126.9,122.6,No
+39,62,Medication X,135.2,125.8,Yes
+40,49,Medication X,131.1,120.2,No
+41,40,Medication X,126.6,119.2,Yes
+42,43,Medication X,129.5,121.2,Yes
+43,54,Medication X,130.7,125.1,No
+44,39,Medication X,128.3,123.9,No
+45,39,Medication X,128.4,121.9,No
+46,52,Medication X,130.8,122.6,No
+47,45,Medication X,130.5,121.7,No
+48,48,Medication X,130.4,128.8,No
+49,38,Medication X,127.4,123.6,No
+50,55,Medication X,134.8,127.9,Yes
+51,48,Medication X,129.5,123.9,No
+52,45,Medication X,129.8,123.9,No
+53,48,Medication X,133.1,128.6,No
+54,45,Medication X,127.8,119.5,No
+55,41,Medication X,130.9,126.6,No
+56,53,Medication X,131.4,125.9,No
+57,34,Medication X,126.2,117.4,No
+58,40,Medication X,128,122,Yes
+59,46,Medication X,129.8,121.4,Yes
+60,48,Medication X,129.9,128.7,No

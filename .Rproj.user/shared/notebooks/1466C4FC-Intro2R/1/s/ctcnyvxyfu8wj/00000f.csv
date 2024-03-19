@@ -1,0 +1,5 @@
+"0","# 4. Add grid()"
+"0","plot(data$Age, data$`Baseline SBP`,"
+"0","     main=""Patient Age vs Baseline Systolic Blood Pressure"","
+"0","     xlab=""Age (years)"", ylab=""Systolic Blood Pressure (mm Hg)"","
+"0","     pch=21, bg=""dodgerblue"", lwd=2, cex=1.2)"

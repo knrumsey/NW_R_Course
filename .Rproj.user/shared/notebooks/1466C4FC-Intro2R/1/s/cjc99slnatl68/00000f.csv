@@ -1,0 +1,4 @@
+"0","myvar = filter(iris, Species==""setosa"")"
+"0","myvar = select(myvar, ""Sepal.Length"")"
+"2","Error in select(myvar, ""Sepal.Length"") : unused argument (""Sepal.Length"")
+"

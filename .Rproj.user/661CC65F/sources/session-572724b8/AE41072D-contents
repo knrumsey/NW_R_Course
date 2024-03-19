@@ -1,0 +1,43 @@
+---
+title: "R, RStudio, and the Tidyverse for Statistics (for Northwestern Residents)"
+format: pdf
+editor: visual
+---
+
+## Details
+
+This is a short, informal, hour long seminar on how to use R for your statistical research. The course will take place at Prentice Conference Room M on Tuesday 3/19/2024 at 6-7pm. The goals of the course are
+
+-   Convince you that R is worth using!
+
+-   Convince you that R is easy to use!
+
+-   Get you writing some simple R code on day one.
+
+-   Provide you with tools/resources for learning more R as needed.
+
+The course will cover
+
+-   Reading, writing, and handling data in R.
+
+-   Making publication ready plots and figures.
+
+-   Performing simple statistical analyses.
+
+-   The [tidyverse](https://www.tidyverse.org).
+
+### Do this before you arrive
+
+For best results, you should plan to **bring your laptop** with you to the course! Try to follow these steps (in order) before Tuesday.
+
+1.  Install R
+    1.  For [mac](https://cran.r-project.org/bin/macosx/)
+    2.  For [windows](https://cran.r-project.org/bin/windows/base/)
+2.  Install [RStudio](https://posit.co/download/rstudio-desktop/) (free)
+3.  Install the `tidyverse` R package
+    1.  Open RStudio
+    2.  Click in the **Console** (bottom left of the RStudio screen)
+    3.  Type `install.packages("tidyverse")` and hit enter.
+    4.  Type `print(require(tidyverse))`. If the word `TRUE` is printed then you're all done!
+
+If you get stuck on any of these steps, send me an email at knrumsey (gmail) and I'll try to help you out on Monday evening. I'll also be at the meeting room 20 minutes before the seminar starts if you want in person help.

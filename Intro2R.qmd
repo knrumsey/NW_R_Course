@@ -1,0 +1,1305 @@
+---
+title: "Introduction to R"
+author: "Kellin Rumsey"
+format: revealjs
+code-line-numbers: false
+echo: true
+editor: visual
+---
+
+## Introduction
+
+Hi I'm Kellin.
+
+You can find these slides at `https://github.com/knrumsey/NW_R_Course`
+
+## Goals for the Next Hour
+
+-   Convince you that R is *worth using*.
+
+-   Convince you that R is *easy to use*.
+
+-   Perform a simple analysis with a (fake) data set.
+
+-   Provide you with *resources* for learning R on your own.
+
+## Some Caveats and Remarks
+
+-   You can't learn all of R in an hour.
+
+-   Ask questions!
+
+-   Assignments.
+
+-   You can look a lot of this stuff up.
+
+## R what and why?
+
+**R** is a free to use and open source programming language which has been heavily adopted for statistical research in academia and statistical analysis in many industries.
+
+-   Easy to use.
+
+-   Designed for Statistics.
+
+-   Reproducible and transparent research.
+
+-   Publication ready data visualization.
+
+-   Open source.
+
+## RStudio what and why?
+
+**RStudio** is an interface for writing and "running" R code.
+
+-   RStudio makes writing R code easier and faster.
+-   Stay organized.
+
+## RStudio Panes
+
+![](figs/rstudio-panes-labeled.jpeg)
+
+## R packages
+
+R has a lot of useful functions that are shipped with the *base* version. But sometimes we need functionality not included by *base R*.
+
+An **R package** is a bundle of R code that the author has made readily available to us.
+
+-   Install packages (only have to do this once) with the `install.packages()` function.
+
+-   Tell R you want to use a package with the `library()` function.
+
+-   Lots of R packages are available on CRAN.
+
+```{r, eval=FALSE}
+# Install packages from CRAN
+install.packages("tidyverse")
+install.packages("survival") # Tools for survival analysis
+install.packages("rms")      # Regression modeling strategies
+
+library("tidyverse")
+library("survival")
+library("rms")
+```
+
+## Tidyverse what and why?
+
+The `tidyverse` is an R package with lots of tools for statistical analysis/research.
+
+```{r, echo=TRUE, eval=FALSE}
+install.packages("tidyverse")
+library(tidyverse)
+
+# Base R
+data = read.csv("mydata.csv")
+
+# Tidyverse
+data = read_csv("mydata.csv")
+```
+
+## 
+
+## R Resources
+
+For learning R on your own.
+
+-   RStudio provides a comprehensive set of resources for learning R, including interactive tutorials, cheat sheets, and webinars. Their website (https://education.rstudio.com/) is a great starting point for beginners.
+
+-   **Swirl:** Swirl is an R package that provides interactive R programming lessons directly within the R console. It's a great way to learn R in a hands-on manner, as it guides you through exercises and quizzes step-by-step.
+
+-   **R for Data Science** is a good intro level book ([free online](https://r4ds.hadley.nz)) for learning R. This book will teach you how to do data science with R: You’ll learn how to get your data into R, get it into the most useful structure, transform it and visualize.
+
+-   **Advanced R** is another [free online book](https://adv-r.hadley.nz) if you really want to become an R programmer. The book is designed primarily for R users who want to improve their programming skills and understanding of the language.
+
+-   The Google and chatGPT! Don't underestimate these resources.
+
+## A Sample Analysis
+
+We'll come back to this later!
+
+-   This is for future reference.
+
+-   Focus on how much can be accomplished with very little code.
+
+## Read data
+
+```{r, echo=FALSE}
+library(tidyverse)
+```
+
+```{r, echo=TRUE}
+# Read data into R (csv format is easiest)
+path = "data/HypotheticalData1.csv"
+data = read_csv(path)
+
+# Display data
+data
+```
+
+## Extract the "Age" column
+
+```{r}
+Age <- data$Age 
+cat(Age, "\n")
+
+# Summary statistics
+summary(Age)
+```
+
+## Make histogram of age
+
+```{r}
+hist(data$Age)
+```
+
+## Make it pretty
+
+```{r}
+hist(data$Age, 
+     main="Histogram of Patient Age",
+     xlab="Age (years)", ylab="Proportion", 
+     freq=FALSE, breaks=20, col='dodgerblue4')
+```
+
+## Make it prettier (with ggplot)
+
+```{r}
+ggplot(data = data, aes(x = Age)) +
+  geom_histogram(aes(y = ..density..), bins = 20, 
+                 fill = "skyblue", color = "black") +
+  stat_function(fun = dnorm, 
+                args = list(mean = mean(Age), sd = sd(Age)), 
+                color = "red", size = 1) +
+  labs(x = "Age (years)", y = "Density", 
+       title = "Histogram of Patient Age")
+```
+
+## Plot age vs Baseline SBP
+
+```{r}
+plot(data$Age, data$`Baseline SBP`,
+     xlab="Age", ylab="Baseline SBP",
+     pch=21, bg="darkgrey")
+```
+
+## Add regression line to plot
+
+```{r}
+plot(data$Age, data$`Baseline SBP`,
+     xlab="Age", ylab="Baseline SBP",
+     pch=21, bg="darkgrey")
+abline(lm(data$`Baseline SBP`~data$Age),
+       lwd=2, lty=3, col="orange")
+```
+
+## Make a new column (decrease in SBP)
+
+```{r}
+data = mutate(data, `SBP Decrease` = `Baseline SBP` - `Post Treatment SBP`)
+
+summary(data$`SBP Decrease`)
+```
+
+## Compare across treatments
+
+```{r}
+boxplot(data$`SBP Decrease`~data$Treatment,
+        col=c("dodgerblue", "orange"),
+        xlab="Treatment", ylab="Decrease in SBP After Treatment")
+```
+
+## Compare with ggplot
+
+```{r}
+ggplot(data, aes(x = Treatment, y = `SBP Decrease`, fill = Treatment)) +
+  geom_boxplot(notch = TRUE, notchwidth = 0.5) + # Add notches
+  scale_fill_manual(values = c("dodgerblue", "orange")) +
+  labs(x = "Treatment", y = "Decrease in SBP After Treatment")
+```
+
+## Two sample T-test
+
+```{r}
+data_control = filter(data, Treatment == "Control")
+data_medX    = filter(data, Treatment == "Medication X")
+
+t.test(data_control$`SBP Decrease`, data_medX$`SBP Decrease`,
+       alternative="two.sided")
+```
+
+## Adverse Effects (Headache?)
+
+```{r, warning=TRUE}
+tab = table(data$Headache, data$Treatment)
+tab
+
+chisq.test(tab)
+```
+
+## Or, use a better test!
+
+```{r}
+tab = table(data$Headache, data$Treatment)
+tab
+
+# Always better than chi square test for any 2x2 table
+fisher.test(tab)
+```
+
+## We can build a linear model
+
+```{r}
+fit = lm(`SBP Decrease`~Age*Treatment, data=data)
+summary(fit)
+```
+
+## Two-way ANOVA
+
+```{r}
+data$`Age Over 40` = (data$Age > 40)
+fit = lm(`SBP Decrease`~`Age Over 40`*Treatment, data=data)
+anova(fit)
+```
+
+## Get fancy with "machine learning"
+
+```{r}
+#install.packages("randomForest")
+library(randomForest)
+model = randomForest(`SBP Decrease`~Age*Treatment, data=data)
+imp = importance(model)
+round(imp/sum(imp)*100, 2)
+```
+
+## Part 1: Variables and Vectors
+
+## R as a Calculator
+
+Type the following commands into the RStudio **Console**
+
+```{r, echo=TRUE, eval=FALSE}
+# Try printing the number 7
+7
+
+# Try adding two numbers together
+7 + 3
+
+# Raise a number to the third power
+2 ^ 3
+
+# A complicated expression
+((7 + 3)*(5 - 2))^2
+```
+
+## Functions
+
+Open Rstudio and type the following commands into the **Console**.
+
+```{r, echo=TRUE, eval=FALSE}
+
+# R has LOTS of built in functions
+log(2)
+
+sin(2*pi)
+
+factorial(4)
+
+choose(8, 2)
+
+# Ask for help with the ? symbol
+?choose
+```
+
+## Variables in R
+
+Sometimes it is useful to store a value in a variable for later
+
+```{r, echo=TRUE, eval=TRUE}
+# Make a variable named x and give it a value
+x = 7
+y = 3
+
+z = x * y
+z
+```
+
+## Variables in R
+
+Sometimes it is useful to store a value in a variable for later
+
+```{r, echo=TRUE, eval=TRUE}
+# Make a variable named x and give it a value
+x = 7
+
+# Make a second variable named y and give it a different value
+y = 9 ^ 2
+y
+
+# Add x and y together and assign it to a variable called "zebra"
+zebra = x + y
+zebra
+```
+
+## Rules for Variable Names
+
+-   Must begin with a letter
+
+-   Can contain letters, numbers, and the symbol `_` (also `., but avoid this).`
+
+-   Variable names cannot include spaces or special characters.
+
+-   Case sensitive.
+
+-   Cannot be a *special keyword* in R (like `if`, `while`, `function`, etc)
+
+-   Should be descriptive (remember what your variables are if you come back a month later!)
+
+## Data Types in R
+
+#### Numeric Data
+
+So far we have looked at the **numeric** data type.
+
+```{r, eval=TRUE}
+x = 7
+class(x)
+```
+
+## Data Types in R
+
+#### Logical Data
+
+An important data type (called Boolean in most languages). Only two values: `TRUE` or `FALSE`.
+
+```{r, eval=FALSE}
+(x == 7) # is x equal to 7                 (TRUE)
+(x != 7) # is x not equal to 7             (FALSE)
+(x > 7)  # is x greater than 7             (FALSE)
+(x < 7)  # is x less than 7                (FALSE)
+(x >= 7) # is x greater than or equal to 7 (TRUE)
+(x >= 7) # is x less thanor equal to 7     (TRUE)
+```
+
+```{r}
+# Get the class
+bool = (x >= 5)
+class(bool)
+```
+
+## Data Types in R
+
+#### Logical Data
+
+Here are some useful logic operations we can perform.
+
+```{r, eval=TRUE}
+A = TRUE
+B = FALSE
+
+# The "and" operator
+A & B
+
+# The "or" operator
+A | B
+
+# The "not" operator
+!A
+!(A & B)
+```
+
+## Data Types in R
+
+#### Character Data
+
+Strings of alpha numeric characters in between quotation marks.
+
+```{r}
+aaa = "apple"
+bbb = "banana"
+class(aaa)
+
+# Special functions for treating these
+nchar(aaa) # how many characters?
+substr(aaa, 2, 3) # give me the second and third characters
+aaa == bbb # are aaa and bbb the same? (FALSE)
+```
+
+## Data Types in R
+
+#### Objects
+
+A variable can also contain a more sophisticated *object*.
+
+```{r}
+# Simulate some data
+n = 10
+xx = runif(n, min=0, max=1)
+yy = 1 + 2*xx + rnorm(n, mean=0, sd=0.25)
+
+# Fit a linear model and save it to a variable
+foo = lm(yy~xx)
+class(foo)
+
+# Make a plot
+plot(xx, yy)
+abline(foo)
+```
+
+## Vectors in R
+
+A vector is a ordered collection of variables of the same type.
+
+```{r, echo=TRUE, eval=FALSE}
+#| code-line-numbers: "1-3"
+# Define a vector
+foo = c(1, 2, 3, 5, 7, 11)
+foo
+
+# Functions on a vector
+length(foo) # how many elements in the vector?
+sum(foo)    # add the elements together
+var(foo)    # calculate the variance
+
+# Extract values from a vector
+foo[1]         # Get the first value from foo
+foo[c(2,4,6)]  # Get the 2nd, 4th, and 6th value 
+foo[-2]        # Get all values EXCEPT the 2nd
+```
+
+## Vectors in R
+
+A vector is a ordered collection of variables.
+
+```{r, echo=TRUE, eval=FALSE}
+#| code-line-numbers: "5-9"
+# Define a vector
+foo = c(1, 2, 3, 5, 7, 11)
+foo
+
+# Functions on a vector
+length(foo) # how many elements in the vector?
+sum(foo)    # add the elements together
+var(foo)    # calculate the variance
+
+# Extract values from a vector
+foo[1]         # Get the first value from foo
+foo[c(2,4,6)]  # Get the 2nd, 4th, and 6th value 
+foo[-2]        # Get all values EXCEPT the 2nd
+```
+
+## Vectors in R
+
+A vector is a ordered collection of variables.
+
+```{r, echo=TRUE, eval=FALSE}
+#| code-line-numbers: "10-13"
+# Define some vectors
+foo = c(1, 2, 3, 5, 7, 11)
+foo
+
+# Functions on a vector
+length(foo) # how many elements in the vector?
+sum(foo)    # add the elements together
+var(foo)    # calculate the variance
+
+
+# Extract values from a vector
+foo[1]         # Get the first value from foo
+foo[c(2,4,6)]  # Get the 2nd, 4th, and 6th value 
+foo[-2]        # Get all values EXCEPT the 2nd
+```
+
+## Vectors in R
+
+There are lots of ways to create vectors.
+
+```{r, eval=FALSE}
+# Numbers between 3 and 10
+3:10
+
+# Even numbers between 4 and 88
+seq(4, 88, by=2)
+(2:44) * 2 # this is another way
+
+# Repeat 3 seven times
+rep(3, 7)
+
+# Concatenate vectors with c()
+a = 1:5
+b = 11:15
+c(a, b)
+
+# Get random numbers from a normal distribution
+rnorm(30, mean=10, sd=3)
+```
+
+## R Script
+
+An R Script is a file with the `.R` extension that you write R code in.
+
+-   It serves as a way to organize, document, and execute R code.
+
+-   Highly reproducible.
+
+-   Highly portable (you can send it to your friends for discussion over drinks).
+
+## R Script
+
+1.  Open a new folder in your computer and call it `RCourse_yourname`.
+2.  In RStudio, click `File -> New File -> R Script.`
+3.  Type the following into the R script
+
+```{r, echo=TRUE, eval=FALSE}
+x = 102
+y = 48
+z = x + 2*y
+print(z)
+```
+
+## R Script
+
+```{r, echo=TRUE, eval=FALSE}
+x = 102
+y = 48
+z = x + 2*y
+print(z)
+```
+
+4.  To execute the code you can
+    -   Source - run the whole script
+
+    -   Highlight any portion of code and type `cntrl + enter` (or `command+return` on mac)
+
+    -   Click on a particular line and type `cntrl + enter` (or `command+return` on mac)
+
+## Assignment 1 
+
+1.  Make a new folder somewhere in your computer and give it a good name.
+2.  Create a new R Project. `File -> New Project -> Existing Directory` and choose the new (outer folder) you made.
+3.  Open a R Script and save it to this folder with the file name `assigment1.R.`
+4.  Use the following code to extract the age column from our hypothetical dataset.
+
+```{r, eval = TRUE}
+data = read_csv("data/HypotheticalData1.csv")
+age = data$Age
+```
+
+## Assignment 1
+
+5.  Use the following R functions on the age data: `mean`, `sd`, `length`. Save the returned values in a variable.
+6.  What is the age of the $50^{th}$ patient? Save this in a new variable.
+7.  Calculate the "z-score" corresponding to this patients age.
+8.  Use the `cor()` function to compute the correlation between age and SBP before treatment. *(Hint: Type `?cor` in console for help.)*
+
+## Assignment 1
+
+```{r}
+# 5. Use the following R functions on the age data: mean, sd, length
+m = mean(age)
+s = sd(age)
+l = length(age)
+
+m # average patient age
+s # standard deviation of patient age
+l # number of patients in the dataset
+```
+
+## Assignment 1 
+
+```{r}
+# 6. What is the age of the $50^{th}$ patient? Save this in a new variable.
+x = age[50]
+x
+```
+
+## Assignment 1 
+
+```{r}
+# 7. Calculate the "z-score" corresponding to this patients age. 
+(x - m)/s
+```
+
+## Assignment 1
+
+```{r}
+# 8. Use the cor() function to compute the correlation between age and SBP before treatment. 
+sbp_before = data$`Baseline SBP`
+cor(age, sbp_before)
+```
+
+## Part 2: Data Frames and Tibbles 
+
+A **Data Frame** is an object in R that behaves essentially like a spreadsheet.
+
+A **Tibble** is the a modernized and enhanced version of a Data Frame from the `tidyverse` package.
+
+-   I will refer to these interchangeably and the differences don't really matter much at this level.
+
+-   Tibbles are generally designed to make things easier.
+
+## CSV Files
+
+A **csv** file (comma separated values) is a simple format for storing data.
+
+Basically an Excel spreadsheet without any bells and whistles.
+
+Good practice for storing data
+
+-   Always keep a "raw" version of your data.
+
+-   One row per "observation"
+
+-   One column per "variable"
+
+Avoid leaving any blank rows or columns
+
+## Reading and Writing CSV's
+
+The functions used to read and write csv files are:
+
+```{r, eval=FALSE}
+read_csv("path_to_data_here")
+
+write_csv(data_frame_or_tibble_object, file="path_to_save_location")
+```
+
+\*Note: If you don't have the tidyverse installed, you can use the functions `read.csv()` and `write.csv()` instead.
+
+## Reading and Writing CSV's
+
+Specific example.
+
+```{r}
+my_tibble = read_csv("data/HypotheticalData1.csv")
+
+write_csv(my_tibble, file="data/making_up_a_file_name.csv")
+```
+
+Check the data folder.
+
+## Accessing a single column
+
+Use the special R symbol `$` to quickly get a column out of a data frame.
+
+```{r, eval=FALSE}
+# Get age variable
+data$Age
+
+# Get headache variable
+data$Headache
+
+# If the variable name has a space, we have to use the ` symbol
+# RStudio will let you "tab" autocomplete. 
+data$`Patient ID`
+```
+
+## Filter and Select
+
+The `filter()` and `select()` functions are incredibly useful. These functions are part of the `dplyr` package which is included with `tidyverse`.
+
+-   Filter: Select rows based on some criteria.
+
+-   Select: Select columns based on some criteria
+
+## Filter
+
+Makes a new data frame with rows satisfying some criteria.
+
+```{r, eval=FALSE}
+#| code-line-numbers: "1-3"
+# Split data set by treatment
+data_control = filter(data, Treatment == "Control")
+data_medX    = filter(data, Treatment == "MedX")
+
+# Another way (get everything EXCEPT for control group)
+data_medX = filter(data, Treatment != "Control")
+
+# Can add multiple groups
+data_foo = filter(data, Treatment == "Control", 
+                        Age >= 40, 
+                        Headache == "No")
+```
+
+## Filter
+
+Makes a new data frame with rows satisfying some criteria.
+
+```{r, eval=FALSE}
+#| code-line-numbers: "5-6"
+# Split data set by treatment
+data_control = filter(data, Treatment == "Control")
+data_medX    = filter(data, Treatment == "MedX")
+
+# Another way (get everything EXCEPT for control group)
+data_medX = filter(data, Treatment != "Control")
+
+# Can add multiple groups
+data_foo = filter(data, Treatment == "Control", 
+                        Age >= 40, 
+                        Headache == "No")
+```
+
+## Filter
+
+Makes a new data frame with only the columns specified.
+
+```{r, eval=FALSE}
+#| code-line-numbers: "8-10"
+# Split data set by treatment
+data_control = filter(data, Treatment == "Control")
+data_medX    = filter(data, Treatment == "MedX")
+
+# Another way (get everything EXCEPT for control group)
+data_medX = filter(data, Treatment != "Control")
+
+# Can add multiple groups
+data_foo = filter(data, Treatment == "Control", 
+                        Age >= 40, 
+                        Headache == "No")
+```
+
+## Select
+
+Makes a new data frame with rows satisfying some criteria.
+
+```{r, eval=FALSE}
+#| code-line-numbers: "1-2"
+# Keep the first 3 columns
+select(data, 1:3)
+
+# Remove the first 3 columns
+select(data, !(1:3))
+
+# Specify which columns you want to keep
+select(data, c("Treatment", "Headache"))
+
+# Keep all columns which include the word "SBP"
+select(data, contains("SBP"))
+```
+
+## Select
+
+Makes a new data frame with rows satisfying some criteria.
+
+```{r, eval=FALSE}
+#| code-line-numbers: "4-5"
+# Keep the first 3 columns
+select(data, 1:3)
+
+# Remove the first 3 columns
+select(data, !(1:3))
+
+# Specify which columns you want to keep
+select(data, c("Treatment", "Headache"))
+
+# Keep all columns which include the word "SBP"
+select(data, contains("SBP"))
+```
+
+## Select
+
+Makes a new data frame with rows satisfying some criteria.
+
+```{r, eval=FALSE}
+#| code-line-numbers: "7-8"
+# Keep the first 3 columns
+select(data, 1:3)
+
+# Remove the first 3 columns
+select(data, !(1:3))
+
+# Specify which columns you want to keep
+select(data, c("Treatment", "Headache"))
+
+# Keep all columns which include the word "SBP"
+select(data, contains("SBP"))
+```
+
+## Select
+
+Makes a new data frame with rows satisfying some criteria.
+
+```{r, eval=FALSE}
+#| code-line-numbers: "10-11"
+# Keep the first 3 columns
+select(data, 1:3)
+
+# Remove the first 3 columns
+select(data, !(1:3))
+
+# Specify which columns you want to keep
+select(data, c("Treatment", "Headache"))
+
+# Keep all columns which include the word "SBP"
+select(data, contains("SBP"))
+```
+
+## Mutate
+
+Used to create new variables in your data frame.
+
+```{r}
+# Get the reduction in SBP after treatment
+data = mutate(data, `SBP Decrease` = `Baseline SBP` - `Post Treatment SBP`)
+
+# Get age in months
+data = mutate(data, AgeMonths = 12 * Age)
+  
+# Delete the age in months variable
+data = select(data, !AgeMonths)
+```
+
+## Other Useful Functions  {.smaller}
+
+See the [dplyr documentation](https://dplyr.tidyverse.org) for details (or search online, or ask chatGPT, or use the R help files with `?`).
+
+1.  **`summarise()`**: Summarize data by collapsing multiple rows into a single summary.
+
+2.  **`group_by()`**: Group data by one or more variables for subsequent operations.
+
+3.  **`arrange()`**: Reorder rows based on column values.
+
+4.  **`rename()`**: Rename columns.
+
+5.  **`distinct()`**: Filter unique/distinct rows from a data frame.
+
+6.  **`count()`**: Count the number of observations in each group.
+
+7.  **`slice()`**: Extract specific rows from a data frame.
+
+## Assignment 2  {.smaller}
+
+1.  Make two new folders inside your main project directory called `data` and `R`. Save your R script inside the R folder.
+2.  Save ("write") your data frame object as a csv inside the data folder. Feel free to open it in excel if you want.
+3.  Suppose that patients $7$, $21$, and $45$ have corrupted data. Use `filter()` to remove them from the data set.
+4.  Use `mutate()` to create a new column in the data frame which is `TRUE` if SBP decreased after treatment.
+5.  Use the `select()` function to get a data frame (give it a new name) with only the columns `Treatment`, `Headache` and `SBP Decrease`.
+6.  Use `filter()` to create two new data frames separated by Treatment. Calculate the average SBP decrease for both datasets.
+
+## Assignment 2 (Solution)
+
+```{r}
+# 2. Save ("write") your data frame object as a csv inside the data folder
+write_csv(data, file="data/making_up_a_file_name.csv")
+```
+
+## Assignment 2 (Solution)
+
+```{r}
+# 3. Suppose that patients $7$, $21$, and $45$ have corrupted data. Use filter() to remove them from the data set.
+filter(data, )
+```
+
+## Assignment 2 (Solution)
+
+```{r}
+# 4. Use mutate() to create a new column in the data frame which is TRUE if SBP decreased after treatment.
+data = mutate(data, `SBP Decrease Logical` = (`Baseline SBP` > `Post Treatment SBP`),
+              .after = Treatment)
+data
+```
+
+## Assignment 2 (Solution)
+
+```{r}
+# 5. Use the select() function to get a data frame (give it a new name) with only the columns Treatment, Headache and SBP Decrease.
+data_mod = select(data, c("Treatment", "Headache", "SBP Decrease"))
+data_mod
+```
+
+## Assignment 2 (Solution)
+
+```{r}
+# 6. Use filter() to create two new data frames separated by Treatment. Calculate the average SBP decrease for both datasets. 
+
+data_control = filter(data, Treatment == "Control")
+data_medX = filter(data, Treatment != "Control")
+
+mean(data_control$`SBP Decrease`)
+mean(data_medX$`SBP Decrease`)
+```
+
+## Part 3: Plotting with R
+
+There are lots of options for plotting with base R.
+
+-   `plot()` - scatterplot
+
+-   `hist()` - histogram
+
+-   `boxplot()` - boxplot (for quantitative variables)
+
+-   `barplot()` - barplot (for categorical variables)
+
+-   `pairs()` - a matrix of scatterplot (good for lots of quantitative variables)
+
+-   `heatmap(), contour()` - Good alternative to scatterplot
+
+-   Lots more!
+
+## Customizing plots with "arguments"
+
+```{r}
+num_pts = 50
+x = seq(0, 1, length=num_pts)
+y = x^2 + rnorm(num_pts, mean=0, sd=0.1)
+plot(x, y)
+```
+
+## Add labels and title
+
+```{r}
+plot(x, y,
+     xlab="Popularity of the name Monica",
+     ylab="The marriage rate in Nevada",
+     main="A Plot with a Spurious Correlation",
+     sub="A subitle - alsjdka")
+```
+
+## Customize the look of the figure
+
+-   `pch` - [Plotting symbols](http://www.sthda.com/english/wiki/r-plot-pch-symbols-the-different-point-shapes-available-in-r) (a number from 0 to 25)
+
+-   `col` - Color (either a whole number or a string giving the [color name](http://www.stat.columbia.edu/~tzheng/files/Rcolor.pdf))
+
+-   `type` - Plot type (`p` for points, `l` for lines, `o` for both overlayed)
+
+-   `lwd` - line thickness (a whole number, `1` is default.
+
+-   `lty` - line type (1,2,3,4,5)
+
+-   `cex` - size (default 1)
+
+```{r}
+plot(x, y, pch=15, col="burlywood4", type='o', lwd=2, lty=3)
+```
+
+## Adding layers to figure
+
+-   `points(x, y)` - add points to current figure
+
+-   `lines(x, y)` - add line to current figure
+
+-   `abline(a, b)` - add a straight line with intercept `a` and slope `b`
+
+-   `legend()` - add a legend
+
+```{r}
+plot(x, y, col="burlywood4", type='l', lwd=2, lty=3)
+points(x, y, pch=16, col="mediumvioletred", cex=1.3)
+legend("topleft", legend=c("this is data"), pch=16, col="mediumvioletred", bty="n", cex=1.5)
+```
+
+## Saving Figures
+
+#### Version 1
+
+Use the RStudio Plots pane (bottom right, click **Export**).
+
+#### Version 2
+
+Use R to save as a `.png` file. Specify the size and resolution.
+
+```{r, eval=FALSE}
+#| code-line-numbers: "1,5"
+png("figs/my_scatterplot.png", height=5, width=8, units="in", res=300)
+plot(x, y, col="burlywood4", type='l', lwd=2, lty=3)
+points(x, y, pch=16, col="mediumvioletred", cex=1.3)
+legend("topleft", legend=c("this is data"), pch=16, col="mediumvioletred", bty="n", cex=1.5)
+dev.off()
+```
+
+## Other Plotting Functions  {.smaller}
+
+Other figures work similarly. You can see additional arguments typing `?` before the function name in the console.
+
+```{r}
+# Make up some data
+cheese_consumption <- rgamma(500, 15, 3)
+hist(cheese_consumption, 
+     main="", xlab="Cheese Consumption (Pounds)",
+     col="orange", border="dodgerblue",
+     breaks=30,  # specify the number of histogram bars
+     freq=FALSE, # plot on a probability (density) scale
+     )
+# Add a smooth line approximation
+d = density(cheese_consumption)
+polygon(d, lwd=2, border="dodgerblue")
+```
+
+## Statistics Teaching Moment (QQPlots)  {.smaller}
+
+There are many highly specialized functions in R.
+
+**Example**: We can use a *qq-plot* to assess the normality of the data.
+
+-   Points are concave up - distribution is skewed right
+
+-   Points are concave down - distribution is skewed left
+
+-   Points are "S" shaped - distribution has "heavy tails"
+
+```{r}
+# QQ Plot for cheese data
+qqnorm(cheese_consumption)
+qqline(cheese_consumption)
+```
+
+## Statistics Teaching Moment (QQPlots)  {.smaller}
+
+Let's install a separate package so we can look at QQ Plots more closely.
+
+```{r}
+# install.packages("car")
+library("car")
+qqPlot(cheese_consumption)
+```
+
+## Boxplot
+
+The base R boxplot function works a lot like the other functions.
+
+```{r}
+y = iris$Sepal.Length # A built in dataset
+boxplot(y, ylab="Sepal Length (cm)", main="A Boring Boxplot")
+```
+
+## Boxplot by group
+
+But we can also use the `~` character to easily split a boxplot by group.
+
+```{r}
+y = iris$Sepal.Length # A built in dataset
+x = iris$Species      # A "factor" data type   
+boxplot(y~x, xlab="Species", ylab="Sepal Length (cm)", main="An Interesting Boxplot",
+        col=c("dodgerblue", "dodgerblue3", "dodgerblue4"),
+        notch=TRUE)
+```
+
+## 
+
+## ggplot vs Base R
+
+Check out [this chapter](https://r4ds.hadley.nz/visualize) from the R for Data Science book to learn more.
+
+![](figs/ggplot_comp.png)
+
+## Assignment 3 - Plotting  {.smaller}
+
+1.  Make a new folder inside your project directory called `figs`. Save your images here.
+2.  Make a scatterplot of patient age vs. baseline SBP. Use arguments to add a title and axis labels. Change the aesthetics of the plot a bit.
+3.  Use `fit = lm(y~x)` to build a linear regression model (substitute `x` and `y` appropriately). Then use `abline()` to add this to figure.
+4.  Find what the `grid()` function does and add this to your figure.
+5.  Make a boxplot of the post-treatment decrease in SBP. Use the `~` symbol to make two different boxplots separated by Treatment. Add a legend (use the `fill` argument).
+
+## Assignment 3 (Solution)
+
+```{r}
+# 2. Make a scatterplot of patient age vs. baseline SBP.
+plot(data$Age, data$`Baseline SBP`,
+     main="Patient Age vs Baseline Systolic Blood Pressure",
+     xlab="Age (years)", ylab="Systolic Blood Pressure (mm Hg)",
+     pch=21, bg="dodgerblue", lwd=2, cex=1.2)
+```
+
+## Assignment 3 (Solution)
+
+```{r}
+# 3. Add linear regression line
+plot(data$Age, data$`Baseline SBP`,
+     main="Patient Age vs Baseline Systolic Blood Pressure",
+     xlab="Age (years)", ylab="Systolic Blood Pressure (mm Hg)",
+     pch=21, bg="dodgerblue", lwd=2, cex=1.2)
+fit = lm(data$`Baseline SBP`~data$Age)
+abline(fit, lwd=2, lty=2, col="orange")
+```
+
+## Assignment 3 (Solution)
+
+```{r}
+# 4. Add grid()
+plot(data$Age, data$`Baseline SBP`,
+     main="Patient Age vs Baseline Systolic Blood Pressure",
+     xlab="Age (years)", ylab="Systolic Blood Pressure (mm Hg)",
+     pch=21, bg="dodgerblue", lwd=2, cex=1.2)
+fit = lm(data$`Baseline SBP`~data$Age)
+abline(fit, lwd=2, lty=2, col="orange")
+grid()
+```
+
+## Assignment 3 (Solution)
+
+```{r}
+# 5. boxplot
+boxplot(data$`SBP Decrease`~data$Treatment,
+        col=c("grey80", "grey20"),
+        xlab="Treatment", ylab="Decrease in SBP After Treatment")
+legend("topleft", c("Control", "MedX"), fill=c("grey80", "grey20"))
+```
+
+## Part 4: Statistical Tests
+
+R can handle any statistical test that you can think of!
+
+-   Comparing parameters: `t.test`, `binom.test`, `var.test`, `cor.test`
+
+-   Categorical tests: `anova`, `chisq.test`, `fisher.test`
+
+-   Survival analysis: `surivival` package (and others)
+
+-   Time series analysis: `forecast` package (and others)
+
+-   Machine learning, artificial intelligence, neural networks, etc.
+
+## One-sample T-test (for population mean)
+
+Think back to your Statistics class. We want to know if the mean of a population differs from some predetermined number $m$.
+
+$$
+\begin{align*}
+H_0:&\ \mu = m \\
+H_a:&\ \mu \neq m
+\end{align*}
+$$
+
+We have to use a bunch of formulas that you probably don't remember and a table that was made in the 1908...
+
+## One-sample T-test   {.smaller}
+
+For Iris flowers of the *Setosa* species, we hypothesize that the mean sepal length is *less than* $5.8$ cm.
+
+$$
+\begin{align*}
+H_0:&\ \mu = 5.8 \\
+H_a:&\ \mu < 5.8
+\end{align*}
+$$
+
+```{r}
+setosa = filter(iris, Species=="setosa")
+myvar = setosa$Sepal.Length
+t.test(myvar, mu=5.8, alternative="less")
+```
+
+## Two-sample T-test   {.smaller}
+
+Now assume that we want to compare two species: We hypothesize that *Versicolor* has a longer average sepal length than the *Setosa* species.
+
+$$
+\begin{align*}
+H_0:&\ \mu_v = \mu_s \\
+H_a:&\ \mu_v > \mu_s
+\end{align*}
+$$
+
+```{r}
+setosa = filter(iris, Species=="setosa")$Sepal.Length
+versic = filter(iris, Species=="versicolor")$Sepal.Length
+
+t.test(versic, setosa, alternative="greater",
+       paired=FALSE, var.equal=FALSE)          # Options for adjusting the type of test
+```
+
+## Multiple Comparisons   {.smaller}
+
+![](figs/jellybean.png)
+
+## Multiple Comparisons (in R)
+
+```{r}
+setosa = filter(iris, Species=="setosa")$Sepal.Length
+versic = filter(iris, Species=="versicolor")$Sepal.Length
+vrgnca = filter(iris, Species=="virginica")$Sepal.Length
+
+# Get p-values
+p_val = rep(NA, 3)
+p_val[1] = t.test(setosa, versic, alternative = "two.sided")$p.value
+p_val[2] = t.test(setosa, vrgnca, alternative = "two.sided")$p.value
+p_val[3] = t.test(vrgnca, versic, alternative = "two.sided")$p.value
+
+# Adjust p-values
+p.adjust(p_val, method="bonferroni")
+p.adjust(p_val, method="holm")
+```
+
+## Testing Categorical Variables
+
+Let's make a new variable which is `TRUE` if the Sepal Length is more than twice as long as the Sepal Width.
+
+```{r}
+my_iris = mutate(iris, `Sepal Long` = (Sepal.Length > 2*Sepal.Width))
+```
+
+and another variable for whether or not the species is *Setosa*.
+
+```{r}
+my_iris = mutate(my_iris, Setosa = (Species == "setosa"))
+```
+
+Now make a table of these values.
+
+```{r}
+tab = table(my_iris$Setosa, my_iris$`Sepal Long`)
+tab
+```
+
+## Testing Categorical Variables
+
+Use Chi Square test
+
+```{r, warning=TRUE}
+chisq.test(tab)
+```
+
+## Statistics Teaching Moment
+
+The Chi Square test is incredibly useful, but it's an **approximation!**
+
+For $2\times 2$ tables, we can use Fisher's exact test instead.
+
+```{r, warning=TRUE}
+fisher.test(tab)
+```
+
+## Chi-Square test
+
+But Chi-square is more flexible and works for "tables" of any size.
+
+```{r, warning=TRUE}
+tab2 = table(my_iris$`Sepal Long`, my_iris$Species)
+chisq.test(tab2)
+```
+
+## Assignment 4
+
+1.  Use R to perform a 1-sample T-test for the Baseline SBP of the population represented by this dataset. Is there evidence to support the claim that this population has an average Systolic Blood Pressure which is higher than $129$ mm Hg?
+2.  Split the data into two different groups based on Treatment. Use R to conduct a test to compare the mean SBP of these two groups. Is there evidence to conclude that medication X is effective?
+3.  Use the `tab()` function to get a table of counts based on treatment and whether or not headaches were found in the patient. Conduct both a chi-square test and Fisher's exact test. What is the p-value(s)? Why are they different? What does the p-value mean?
+
+## Assignment 4 (Solution)
+
+```{r}
+# 1. one-sample t test
+t.test(data$`Baseline SBP`, mu=129, alternative="greater")
+```
+
+## Assignment 4 (Solution)
+
+```{r}
+# 2. two-sample t test
+d1 = filter(data, Treatment == "Control")
+x1 = d1$`Baseline SBP`
+
+d2 = filter(data, Treatment == "Medication X")
+x2 = d2$`Baseline SBP`
+
+t.test(x1, x2, mu=129, alternative="greater")
+```
+
+## Assignment 4 (Solution)
+
+```{r}
+# 3. chi-square test
+tab = table(data$Treatment, data$Headache)
+chisq.test(tab)
+fisher.test(tab)
+```
