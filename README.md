@@ -1,6 +1,4 @@
 A Short R Course
 Author: Kellin Rumsey
 
-To access the slides, open the file `Intro2R.html` with a web browser. 
-
-You can do this by right clicking on the file and selecting "Open in New Tab"
+Use the following URL to access the slides: https://htmlpreview.github.io/?https://raw.githubusercontent.com/knrumsey/NW_R_Course/main/Intro2R.html#/title-slide
